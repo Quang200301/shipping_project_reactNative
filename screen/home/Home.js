@@ -1,9 +1,13 @@
 import react from "react";
-import {View,Text,StyleSheet,TextInput,Image, Pressable} from "react-native";
+import {View,Text,StyleSheet,TextInput,Image, Pressable, SafeAreaView, ScrollView} from "react-native";
 import {FontAwesome} from "@expo/vector-icons";
-const Home=()=>{
+import CardItem from "./CardItem";
+import Footer from "./Footer";
+const Home=({navigation})=>{
     return(
-        <View style={{flex:1,width:"95%",alignItems:"center"}}>
+        <SafeAreaView style={{flex:1}}>
+            
+            <View style={{flex:1,width:"95%"}}>
             <View style={{flexDirection:"row",justifyContent:"space-around",paddingTop:20,width:"100%",alignItems:"center"}}>
                 <Text style={{fontSize:40,fontWeight:"bold"}}>
                     Find Your {'\n'}Favorite Food
@@ -31,9 +35,9 @@ const Home=()=>{
                             > 
                             </TextInput>
                     </View>
-                    <Image style={styles.menuImage} source={require("../../assets/Image/Filter.png")}/>
+                    <FontAwesome name={"bars"} size={35} color="blue" style={{marginTop:25}}/>
                 </Pressable>
-                <View style={{flexDirection:"row",width:"90%", backgroundColor:"grey",alignItems:"center",borderRadius:8, paddingHorizontal:18, gap:20}}>
+                <View style={{flexDirection:"row",width:"90%", backgroundColor:"grey",alignItems:"center",borderRadius:8, paddingHorizontal:18, gap:20,alignSelf:"center"}}>
                     <Image  style={{width:150,height:200,resizeMode: 'contain'}}source={require("../../assets/images/hotdog.png")} />
                     <View>
                         <Text style={{fontSize:20,fontWeight:"bold",color:'white'}}>Do you love it</Text>
@@ -45,20 +49,24 @@ const Home=()=>{
                         </Pressable>
                     </View>
                 </View>
-            <View>
-                <Text>Nearest Restaurant</Text>
-                <View>
-                   
+            <View style={{paddingVertical:16,}}>
+                <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+                    <Text style={{fontSize:20,fontWeight:"bold",paddingHorizontal:18,}}>Nearest Restaurant</Text>
+                   <Pressable onPress={()=>navigation.navigate("viewitem")}>
+                        <Text style={{color:"#6B50F6"}}>View More</Text>
+                   </Pressable>
                 </View>
-                <Text>Nearest Restaurant</Text>
-                <View>
-                   
-                </View>
+              
+               <CardItem/>   
             </View>
-               
-            
-         
-        </View>
+            </View>
+
+            <View>
+                <Footer/> 
+            </View>
+
+        </SafeAreaView>
+       
     )
 }
 export default Home;
