@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
 } from "react-native";
+import Footer from "../home/Footer";
 
 export default function Message() {
   const [data, setData] = useState([
@@ -63,10 +64,11 @@ export default function Message() {
       </View>
     );
   };
-
   return (
-    <SafeAreaView style={{backgroundColor:"black",width:'100%',height:'100%'}}>
-      <View> 
+    <SafeAreaView
+      style={{  width: "100%", height: "100%",backgroundColor:'#E8E5F8' }}
+    >
+      <View>
         <Text style={styles.chatText}> Chat</Text>
       </View>
       <FlatList
@@ -75,27 +77,28 @@ export default function Message() {
         renderItem={renderItem}
         keyExtractor={(item) => `key-${item.id}`}
       />
+      <Footer />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-
-  chatText:{
-    marginTop:40,
-    fontSize:40,
+  chatText: {
+    marginTop: 40,
+    fontSize: 40,
   },
   list: {
     marginTop: 20,
   },
   content: {
+    alignSelf:'center',
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
-    top: 10,
-    backgroundColor:'yellow',
-    marginTop:30,
-    borderRadius:10
+    backgroundColor: "#FFFFFF",
+    marginTop: 20,
+    borderRadius: 10,
+    width:"90%"
   },
   imageContainer: {
     marginRight: 10,
@@ -112,14 +115,14 @@ const styles = StyleSheet.create({
   },
   notificationText: {
     fontSize: 20,
+    color:'#DEDEDF'
   },
   timeContainer: {
     marginLeft: 10,
   },
   hourText: {
     fontSize: 20,
-    top: -10,
-    marginLeft: 40,
-    marginRight: 90,
+    top: -15,
+   
   },
 });
