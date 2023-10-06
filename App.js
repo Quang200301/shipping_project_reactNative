@@ -1,19 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default function App() {
+import React from "react";
+import { SafeAreaView, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import Message from "./screen/chat/Messagex";
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Tài xinh đẹp</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+      <Message/>
+    </SafeAreaView>
   );
-}
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+};
+export default App;
