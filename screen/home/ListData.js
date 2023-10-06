@@ -23,10 +23,10 @@ export const ListData = [
         image: require("../../assets/images/lasgana.png"),
         rating:"4.2",
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
-        time:'40 mins',
+        time:'30 mins',
         difficulty:"Medium",
         calories:"420 cal",
-        description:"cook the food so delisiout",
+        description:"coo the food so delisiout",
         step:[
             "step one",
             "step two",
@@ -39,7 +39,7 @@ export const ListData = [
         image: require("../../assets/images/tuna.png"),
         rating:"4.2",
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
-        time:'40 mins',
+        time:'20 mins',
         difficulty:"Medium",
         calories:"420 cal",
         description:"cook the food so delisiout",
@@ -59,5 +59,132 @@ export const ListData = [
         difficulty:"Medium",
         calories:"420 cal",
     },
+    {
+        id:"05",
+        name:"gachienchuoi",
+        image: require("../../assets/images/lasgana.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'50 mins',
+        difficulty:"Medium",
+        calories:"420 cal",
+        description:"cook the food so delisiout",
+        step:[
+            "step one",
+            "step two",
+            "step three"
+        ]
+    },
+    {
+        id:"06",
+        name:"thitheocay",
+        image: require("../../assets/images/tuna.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'40 mins',
+        difficulty:"Medium",
+        calories:"420 cal",
+        description:"cook the food so delisiout",
+        step:[
+            "step one",
+            "step two",
+            "step three"
+        ]
+    },
+    // {
+    //     id:"07",
+    //     name:"chaomaogay",
+    //     image: require("../../assets/images/carrot.jpg"),
+    //     rating:"4.2",
+    //     ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+    //     time:'40 mins',
+    //     difficulty:"Medium",
+    //     calories:"420 cal",
+    // },
    
-]
+   
+];
+export const NearestData=[
+    {
+        id:"01",
+        name:"Vegan Resto",
+        image: require("../../assets/images/Resturant1.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'12 mins',
+        difficulty:"Medium",
+        color:"#f39c12",
+        calories:"420 cal",
+        description:"cook the food so delisiout",
+        step:[
+            "step one",
+            "step two",
+            "step three"
+        ]
+    },
+    {
+        id:"02",
+        name:"Healthy Food",
+        image: require("../../assets/images/Restaurant2.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'30 mins',
+        difficulty:"Medium",
+        calories:"420 cal",
+        description:"coo the food so delisiout",
+        step:[
+            "step one",
+            "step two",
+            "step three"
+        ]
+    },
+    {
+        id:"03",
+        name:"Good Food",
+        image: require("../../assets/images/Restaurant3.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'20 mins',
+        difficulty:"Medium",
+        calories:"420 cal",
+        description:"cook the food so delisiout",
+        step:[
+            "step one",
+            "step two",
+            "step three"
+        ]
+    },
+    {
+        id:"04",
+        name:"Smart Resto",
+        image: require("../../assets/images/Restaurant4.png"),
+        rating:"4.2",
+        ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
+        time:'40 mins',
+        difficulty:"Medium",
+        calories:"420 cal",
+    },
+];
+export const MenuData = [
+   {
+    id:"01",
+    name:"Spacy fresh crab",
+    image:require("../../assets/images/Menu1.png"),
+    price:"250",
+    namerestaurant:"Waroenk kita",
+   } ,
+   {
+    id:"02",
+    name:"Spacy fresh crab",
+    image:require("../../assets/images/Menu1.png"),
+    price:"250",
+    namerestaurant:"Waroenk kita",
+   } ,
+   {
+    id:"03",
+    name:"Spacy fresh crab",
+    image:require("../../assets/images/Menu2.png"),
+    price:"250",
+    namerestaurant:"Waroenk kita",
+   } ,
+];
