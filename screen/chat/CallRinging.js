@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, SafeAreaView, ImageBackground, View, TouchableOpacity, Text, Image } from "react-native";
-export default function CallRinging() {
+export default function CallRinging({ navigation }) {
+
+    useEffect(() => {
+        setTimeout(
+            () => navigation.navigate('call')
+            ,5000);
+    }, [])
     return (
         <ImageBackground
             style={styles.backGround}
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 161,
-        elevation:10,
+        elevation: 10,
     },
     volumeUpIcon: {
         width: 25,
@@ -102,7 +108,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 161,
-        elevation:10,
+        elevation: 10,
 
     },
     closeIcon: {

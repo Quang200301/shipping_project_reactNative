@@ -17,7 +17,7 @@ const dataChatContents = [
         meToThem: "Okay I'm waiting 👍"
     }
 ];
-export default function ChatDetail() {
+export default function ChatDetail({navigation}) {
     const [dataChat, setDataChat] = useState();
     const [dataInputChat, setDataInputChat] = useState('');
     const [showEmptyMessageAlert, setShowEmptyMessageAlert] = useState(false);
@@ -54,7 +54,9 @@ export default function ChatDetail() {
             <StatusBar />
             <SafeAreaView>
                 <View style={styles.container}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={()=>navigation.goBack()}
+                    >
                         <Image source={require('../../assets/icons/IconBack.png')} />
                     </TouchableOpacity>
                     <View>
@@ -70,7 +72,9 @@ export default function ChatDetail() {
                                 <Text style={styles.statusText}>Online</Text>
                             </View>
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={()=>navigation.navigate('callRinging')}
+                        >
                             <Image source={require('../../assets/icons/CallLogo.png')} />
                         </TouchableOpacity>
                     </TouchableOpacity>

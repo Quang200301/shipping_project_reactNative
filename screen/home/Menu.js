@@ -5,6 +5,7 @@ const Menu =()=>{
     return(
         <View style={Styles.menuItem}>
             <FlatList
+            
                 data={MenuData}
                 renderItem={({item})=>
                 <Pressable style={Styles.menuData}>

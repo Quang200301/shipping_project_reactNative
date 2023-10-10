@@ -6,10 +6,9 @@ import {
   SafeAreaView,
   FlatList,
   Image,
+  TouchableOpacity,
 } from "react-native";
-import Footer from "../home/Footer";
-
-export default function Message() {
+export default function Message({ navigation }) {
   const [data, setData] = useState([
     {
       id: 1,
@@ -48,9 +47,12 @@ export default function Message() {
     },
   ]);
   const [isLoading, setLoading] = useState(true);
+
   const renderItem = ({ item, index }) => {
     return (
-      <View style={styles.content}>
+      <TouchableOpacity
+        onPress={()=>navigation.navigate('chatDetail')}
+        style={styles.content}>
         <View style={styles.imageContainer}>
           <Image source={item.image} style={styles.image} />
         </View>
@@ -61,12 +63,12 @@ export default function Message() {
         <View style={styles.timeContainer}>
           <Text style={styles.hourText}>{item.Hour}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
   return (
     <SafeAreaView
-      style={{  width: "100%", height: "100%",backgroundColor:'#E8E5F8' }}
+      style={{ width: "100%", height: "100%", backgroundColor: '#E8E5F8' }}
     >
       <View>
         <Text style={styles.chatText}> Chat</Text>
@@ -77,7 +79,6 @@ export default function Message() {
         renderItem={renderItem}
         keyExtractor={(item) => `key-${item.id}`}
       />
-      <Footer />
     </SafeAreaView>
   );
 }
@@ -91,14 +92,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   content: {
-    alignSelf:'center',
+    alignSelf: 'center',
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
     backgroundColor: "#FFFFFF",
     marginTop: 20,
     borderRadius: 10,
-    width:"90%"
+    width: "90%"
   },
   imageContainer: {
     marginRight: 10,
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   notificationText: {
     fontSize: 20,
-    color:'#DEDEDF'
+    color: '#DEDEDF'
   },
   timeContainer: {
     marginLeft: 10,
@@ -123,6 +124,6 @@ const styles = StyleSheet.create({
   hourText: {
     fontSize: 20,
     top: -15,
-   
+
   },
 });

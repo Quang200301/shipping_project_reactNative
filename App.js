@@ -7,68 +7,82 @@ import ViewItem from './screen/home/ViewItem';
 import Home from './screen/home/Home';
 import { FontAwesome } from "@expo/vector-icons";
 import Menu from './screen/home/Menu';
-
+import { Text, } from 'react-native';
 import { StatusBar } from "expo-status-bar";
 import Message from "./screen/chat/Messagex";
 import ChatDetail from "./screen/chat/ChatDetails";
 import CallRinging from "./screen/chat/CallRinging";
 import Call from "./screen/chat/Call";
-
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-
 export default function App() {
-  const BottomTab=()=>{
-    return(
-      <Tab.Navigator 
-        screenOptions={{
+  const BottomTab = () => {
+    return (
+      <Tab.Navigator
+     
+        screenOptions={({ route }) => ({
           headerShown: false,
-          tabBarStyle: {
-            labelStyle: {
-              color: "red",
-              fontSize: 30,
+          tabBarLabel: ({ focused, color }) => {
+            if (focused) {
+              return <Text style={{ color }}>{route.name}</Text>;
             }
+            return null; // Ẩn label khi tab không được chọn
           },
-          tabBarActiveTintColor: "red",
+          tabBarIcon: ({ color, size }) => {
+            let iconName;
+            if (route.name === 'Home') {
+              iconName = 'home';
+            } else if (route.name === 'User') {
+              iconName = 'user';
+            } else if (route.name === 'Cart') {
+              iconName = 'shopping-cart';
+            } else if (route.name === 'Chat') {
+              iconName = 'comment';
+            }
+            return <FontAwesome name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'red', // Màu cho tab được chọn
+          inactiveTintColor: 'blue', // Màu cho tab không được chọn
+          tabBarShowLabel: false,
+          
         }}
       >
-        <Tab.Screen name="home" component={Home}
+        <Tab.Screen  name="Home" component={Home}
           options={{
-            
-            tabBarLabel: "Home",
-            tabBarIcon: ({color}) => <FontAwesome name='home' size={30} color={color}/>,
+            tabBarIcon: ({ color }) => <FontAwesome name='home' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="menu" component={Menu}
+        <Tab.Screen name="User" component={Menu}
           options={{
-            tabBarLabel: "Home",
-            tabBarIcon: ({color}) => <FontAwesome name='user' size={30} color={color}  />,
+
+            tabBarIcon: ({ color }) => <FontAwesome name='user' size={30} color={color} />,
           }}
         />
-         <Tab.Screen name="user" component={Home}
+        <Tab.Screen name="Cart" component={Home}
           options={{
-            
-            tabBarLabel: "Home",
-            tabBarIcon: ({color}) => <FontAwesome name='shopping-cart' size={30} color={color} />,
+            tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="message" component={Message}
+        <Tab.Screen name="Chat" component={Message}
           options={{
-            tabBarLabel: "Chat",
-            tabBarIcon: ({color}) => <FontAwesome name='message' size={30} color={color} />,
+            tabBarIcon: ({ color }) => <FontAwesome name='comment' size={30} color={color} />
           }}
         />
-      </Tab.Navigator> 
+      </Tab.Navigator>
     )
   }
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown:false}}>
-        <Stack.Screen name='home' component={BottomTab}/>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='home' component={BottomTab} />
         <Stack.Screen name="viewitem" component={ViewItem} />
         <Stack.Screen name="message" component={Message} />
+        <Stack.Screen name="chatDetail" component={ChatDetail} />
+        <Stack.Screen name="callRinging" component={CallRinging} />
+        <Stack.Screen name="call" component={Call} />
       </Stack.Navigator>
-      
     </NavigationContainer>
   )
 }
