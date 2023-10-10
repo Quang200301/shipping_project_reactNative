@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -6,6 +7,12 @@ import ViewItem from './screen/home/ViewItem';
 import Home from './screen/home/Home';
 import { FontAwesome } from "@expo/vector-icons";
 import Menu from './screen/home/Menu';
+
+import { StatusBar } from "expo-status-bar";
+import Message from "./screen/chat/Messagex";
+import ChatDetail from "./screen/chat/ChatDetails";
+import CallRinging from "./screen/chat/CallRinging";
+import Call from "./screen/chat/Call";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -45,10 +52,10 @@ export default function App() {
             tabBarIcon: ({color}) => <FontAwesome name='shopping-cart' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="message" component={Menu}
+        <Tab.Screen name="message" component={Message}
           options={{
-            tabBarLabel: "Home",
-            tabBarIcon: ({color}) => <FontAwesome name='comment' size={30} color={color} />,
+            tabBarLabel: "Chat",
+            tabBarIcon: ({color}) => <FontAwesome name='message' size={30} color={color} />,
           }}
         />
       </Tab.Navigator> 
@@ -59,6 +66,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{headerShown:false}}>
         <Stack.Screen name='home' component={BottomTab}/>
         <Stack.Screen name="viewitem" component={ViewItem} />
+        <Stack.Screen name="message" component={Message} />
       </Stack.Navigator>
       
     </NavigationContainer>
