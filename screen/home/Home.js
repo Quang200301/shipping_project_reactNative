@@ -2,7 +2,6 @@ import react from "react";
 import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import CardItem from "./CardItem";
-import Footer from "./Footer";
 import Menu from "./Menu";
 const Home = ({ navigation }) => {
     return (
@@ -67,9 +66,6 @@ const Home = ({ navigation }) => {
                 </View>
             </View>
             </ScrollView>
-            <View>
-                <Footer />
-            </View>
 
         </SafeAreaView>
 
