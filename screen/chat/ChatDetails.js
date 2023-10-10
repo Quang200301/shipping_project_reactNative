@@ -1,22 +1,50 @@
+import React, { useEffect, useRef, useState } from "react";
+
 import { StatusBar } from "expo-status-bar";
-import react from "react";
-import { ScrollView } from "react-native";
-import { StyleSheet } from "react-native";
-import { SafeAreaView, ImageBackground, View, TouchableOpacity, Text, Image }
+import { StyleSheet, SafeAreaView, ImageBackground, View, TouchableOpacity, Text, Image, TextInput, ScrollView }
     from "react-native";
-
+const dataChatContents = [
+    {
+        meToThem: "Okay, for what level of spiciness?"
+    },
+    {
+        meToThem: "Okay I'm waiting 👍"
+    },
+    {
+        theyToMe: "Okay, wait a minute 👍 ",
+    },
+    {
+        meToThem: "Okay I'm waiting 👍"
+    }
+];
 export default function ChatDetail() {
+    const [dataChat, setDataChat] = useState();
+    const [dataInputChat, setDataInputChat] = useState('');
+    const [showEmptyMessageAlert, setShowEmptyMessageAlert] = useState(false);
+    const scrollViewRef = useRef();
+    useEffect(
+        () => {
+            if (!dataChat) {
+                setDataChat(dataChatContents)
+            }
+        }, [dataInputChat])
 
-    const chatContents = [
-        {
-            they:"Just to order",
-            me:"Okay, for what level of spiciness?"
-        },
-        {
-            they:"Okay, wait a minute 👍 ",
-            me:"Okay I'm waiting 👍"
+    const handleChatSent = () => {
+        if (dataInputChat === '') {
+            // Hiển thị thông báo
+            setShowEmptyMessageAlert(true);
+            // Tự động ẩn thông báo sau 3 giây (hoặc khoảng thời gian tùy ý)
+            setTimeout(() => {
+                setShowEmptyMessageAlert(false);
+            }, 500); // 3 giây
+        } else {
+            // Gửi tin nhắn và xử lý logic gửi tin nhắn ở đây
+            const newMessage = { meToThem: dataInputChat };
+            const mesUpdate = [...dataChat, newMessage];
+            setDataChat(mesUpdate);
+            setDataInputChat('');
         }
-    ]
+    }
     return (
         <ImageBackground
             style={styles.backGround}
@@ -29,7 +57,6 @@ export default function ChatDetail() {
                     <TouchableOpacity>
                         <Image source={require('../../assets/icons/IconBack.png')} />
                     </TouchableOpacity>
-
                     <View>
                         <Text style={styles.chatText}>Chat</Text>
                     </View>
@@ -47,11 +74,42 @@ export default function ChatDetail() {
                             <Image source={require('../../assets/icons/CallLogo.png')} />
                         </TouchableOpacity>
                     </TouchableOpacity>
-                    <ScrollView style={styles.chatContent}>
-                        
-                        <Text style={styles.chatContentThey}></Text>
-                        <Text style={styles.chatContentMe}></Text>
+                    <ScrollView
+                        style={styles.chatContent}
+                        ref={scrollViewRef}
+                        onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
+                    >
+                        {
+                            dataChat ?
+                                dataChat.map((mes,index) => (
+                                    mes.theyToMe ?
+                                        <Text key={`theyToMe_${index}`} style={styles.chatContentThey}>{mes.theyToMe}</Text>
+                                        :
+                                        <Text key={`meToThem_${index}`} style={styles.chatContentMe}>{mes.meToThem}</Text>
+                                ))
+                                : <Text style={styles.chatContentMe}> There is have no content chat</Text>
+                        }
                     </ScrollView>
+                    {showEmptyMessageAlert && (
+                        <View style={styles.alertContainer}>
+                            <Text style={styles.alertText}>Bạn chưa gõ tin nhắn.</Text>
+                        </View>
+                    )}
+                    <View style={styles.chatInputFrame}>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={newText => setDataInputChat(newText)}
+                            value={dataInputChat}
+                            placeholder="Messages"
+                        // keyboardType="text"
+                        />
+                        <TouchableOpacity
+                            onPress={handleChatSent}
+                            style={styles.SendIconFrame}
+                        >
+                            <Image source={require('../../assets/icons/SendIcon.jpg')} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </SafeAreaView>
         </ImageBackground>
@@ -94,18 +152,87 @@ const styles = StyleSheet.create({
         columnGap: 10,
     },
     nameText: {
-        color: "#2242E",
+        color: "black",
         fontSize: 15,
 
     },
     statusText: {
-        color: '#22242E',
+        color: '#22242e',
         opacity: 0.3
     },
-    chatContent:{
-        backgroundColor:"pink",
-        height:"60%"
-    }
+    chatContent: {
+        height: "58%",
+        borderRadius: 20
+    },
+    chatContentThey: {
+        alignSelf: 'flex-start',
+        backgroundColor: '#F6F6F6',
+        color: '#181818',
+        fontSize: 14,
+        opacity: 0.8,
+        width: 'auto',
+        padding: 10,
+        margin: 15,
+        borderRadius: 13,
+        elevation: 10,
+        lineHeight: 20,
+
+    },
+    chatContentMe: {
+        alignSelf: 'flex-end',
+        backgroundColor: '#6B50F6',
+        color: '#FFF',
+        fontSize: 14,
+        width: 'auto',
+        padding: 10,
+        margin: 15,
+        borderRadius: 13,
+        elevation: 10,
+        lineHeight: 20
+    },
+
+    chatInputFrame: {
+        backgroundColor: '#FFF',
+        width: '100%',
+        height: 74,
+        margin: 2,
+        flexDirection: 'row',
+        elevation: 10,
+        alignItems: 'center',
+        padding: 10,
+        justifyContent: 'space-around',
+        borderRadius: 22
+    },
+
+    input: {
+        height: "70%",
+        width: "90%",
+        padding: 8,
+        opacity: 0.8,
+        fontSize: 17,
+    },
+    SendIconFrame: {
+        flexDirection: 'row',
+        height: "70%",
+        alignItems: 'center',
+    },
+
+    alertContainer: {
+        position: 'absolute',
+        bottom: 100,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)', // Màu nền mờ đen
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        alignItems: 'center',
+        borderRadius:24,
+        opacity:0.9,
+    },
+    alertText: {
+        color: 'white', // Màu chữ trắng
+        fontWeight: 'bold',
+    },
 });
 
 

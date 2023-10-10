@@ -14,5 +14,4 @@ function Navigator() {
         </NavigationContainer>
       );
   }
-  
   export default Navigator;
