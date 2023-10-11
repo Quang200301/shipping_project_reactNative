@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 161,
-        elevation:10,
+        elevation: 10,
     },
     volumeUpIcon: {
         width: 25,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 161,
-        elevation:10,
+        elevation: 10,
 
     },
     closeIcon: {
