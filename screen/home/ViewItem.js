@@ -1,30 +1,28 @@
 import React from "react";
 import { Text, FlatList, Pressable, Image, ScrollView, StyleSheet, View } from "react-native";
-import { ListData, NearestData } from "./ListData";
+import { ListData } from "./ListData";
 import Header from "./Header";
+import ViewNeares from "./ViewNeares";
+import { useNavigation } from "@react-navigation/native";
 const ViewItem = () => {
-
-    const restaurantItems = ({ item }) => (
-        <Pressable style={styles.itemRestaurant} >
-            <Image source={item.image} style={{ width: 150, height: 150, resizeMode: "center" }} />
-            <Text>{item.name}</Text>
-        </Pressable>
-
-    )
-
+    const navigation=useNavigation();
     return (
         <>
-            <Header />
-            <ScrollView>
+          
 
+           
+         <Header />
+        <>
                 <View style={{ flex: 1, width: "90%", alignSelf: "center" }}>
                     <Text style={{ fontSize: 20, fontWeight: "600", marginHorizontal: 16 }}>Populer Restaurant</Text>
                     <Text>
                         <FlatList
+                      
                             style={{ width: "100%" }}
                             data={ListData}
                             renderItem={({ item }) =>
                                 <Pressable
+                                    onPress={()=>navigation.navigate('  ',{item:item})}
                                     style={{
                                         backgroundColor: "#FFFFFF",
                                         shadowColor: "#000",
@@ -54,18 +52,10 @@ const ViewItem = () => {
                     </Text>
 
                     {/* Show reastaurant --------------------------*/}
-                    <Text style={styles.Nearest}>Nearest Restaurant</Text>
-                    <View   >
-                        <FlatList
-                            style={styles.flatListContainer}
-                            data={NearestData}
-                            renderItem={restaurantItems}
-                            numColumns={2}
-                            columnWrapperStyle={{ justifyContent: 'space-between', gap: 10 }}
-                        />
-                    </View>
+                   
+                   <ViewNeares/>
                 </View>
-            </ScrollView>
+                </>
         </>
 
     )

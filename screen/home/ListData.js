@@ -25,6 +25,7 @@ export const ListData = [
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
         time:'30 mins',
         difficulty:"Medium",
+        color:"#f39c12",
         calories:"420 cal",
         description:"coo the food so delisiout",
         step:[
@@ -41,6 +42,7 @@ export const ListData = [
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
         time:'20 mins',
         difficulty:"Medium",
+        color:"#E53935",
         calories:"420 cal",
         description:"cook the food so delisiout",
         step:[
@@ -56,6 +58,7 @@ export const ListData = [
         rating:"4.2",
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
         time:'40 mins',
+        color:"#009688",
         difficulty:"Medium",
         calories:"420 cal",
     },
@@ -67,6 +70,7 @@ export const ListData = [
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
         time:'50 mins',
         difficulty:"Medium",
+        color:"#f39c12",
         calories:"420 cal",
         description:"cook the food so delisiout",
         step:[
@@ -82,6 +86,7 @@ export const ListData = [
         rating:"4.2",
         ingredients:["Fresh Tuna","Lime juice","Red Onion","Avocado"],
         time:'40 mins',
+        color:"#f39c12",
         difficulty:"Medium",
         calories:"420 cal",
         description:"cook the food so delisiout",

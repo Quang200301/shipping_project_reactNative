@@ -9,7 +9,7 @@ const Menu =()=>{
                 data={MenuData}
                 renderItem={({item})=>
                 <Pressable style={Styles.menuData}>
-                    <Image source={item.image}  style={{ width: 100, height: 100 }}/>
+                    <Image source={item.image}  style={{ width: 70, height: 70 }}/>
                     <View>
                         <Text>{item.name}</Text>
                         <Text>{item.price}$</Text>
@@ -28,16 +28,19 @@ export default Menu;
 Styles=StyleSheet.create({
     menuItem:{
         flex:1,
-  
+        width:"100%",
+       marginHorizontal:13
         
       },
     menuData:{
+        marginHorizontal:16,
+       
         backgroundColor: "#FFF",
         flexDirection:"row",
         borderRadius: 22,
         fontWeight:"700",
         margin: 8, // Khoảng cách giữa các mục
-        padding: 3,
+        padding: 13,
         gap:8
   
         

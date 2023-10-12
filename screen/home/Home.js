@@ -5,8 +5,9 @@ import CardItem from "./CardItem";
 import Menu from "./Menu";
 const Home = ({ navigation }) => {
     return (
+        <ScrollView>
         <SafeAreaView style={{ flex: 1 }}>
-            <ScrollView>
+          
             <View style={{ flex: 1, width: "95%" }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", paddingTop: 20, width: "100%", alignItems: "center" }}>
                     <Text style={{ fontSize: 40, fontWeight: "bold" }}>
@@ -36,9 +37,14 @@ const Home = ({ navigation }) => {
                         >
                         </TextInput>
                     </View>
-                    <FontAwesome name={"bars"} size={35} color="blue" style={{ marginTop: 25 }} />
+                    {/* <FontAwesome name={"bars"} size={35} color="blue" style={{ marginTop: 25 }} /> */}
+                    <Pressable
+                        onPress={() => {navigation.navigate("searchs")}}
+                        >
+                        <Image source={require("../../assets/icons/FilterSearch.png")} style={{ width: 55, height: 55, marginVertical: 20 }} />
+                    </Pressable>
                 </Pressable>
-                <View style={{ flexDirection: "row", width: "90%", backgroundColor: "grey", alignItems: "center", borderRadius: 8, paddingHorizontal: 18, gap: 20, alignSelf: "center", justifyContent: "center" }}>
+                <View style={{ flexDirection: "row", width: "95%",left:10, backgroundColor: "grey", alignItems: "center", borderRadius: 8, gap: 20, alignSelf: "center", justifyContent: "center" }}>
                     <Image style={{ width: 150, height: 200, resizeMode: 'contain' }} source={require("../../assets/images/hotdog.png")} />
                     <View>
                         <Text style={{ fontSize: 20, fontWeight: "bold", color: 'white' }}>Do you love it</Text>
@@ -53,7 +59,7 @@ const Home = ({ navigation }) => {
                 <View style={{ paddingVertical: 16, }}>
                     <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
                         <Text style={{ fontSize: 20, fontWeight: "bold", paddingHorizontal: 18, }}>Nearest Restaurant</Text>
-                        <Pressable onPress={() => navigation.navigate("viewitem")}>
+                        <Pressable onPress={() => navigation.navigate("allview")}>
                             <Text style={{ color: "#6B50F6" }}>View More</Text>
                         </Pressable>
                     </View>
@@ -65,9 +71,10 @@ const Home = ({ navigation }) => {
                     <Menu/>
                 </View>
             </View>
-            </ScrollView>
+            
 
         </SafeAreaView>
+        </ScrollView>
 
     )
 }

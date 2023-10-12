@@ -1,7 +1,9 @@
 import React from "react";
 import {View, Text,FlatList,Image,Pressable} from "react-native";
 import { ListData } from "./ListData";
+import { useNavigation } from "@react-navigation/native";
 const CardItem=()=>{
+    const navigation=useNavigation();
     return(
         <View style={{marginLeft:20}}>
             <FlatList
@@ -10,6 +12,7 @@ const CardItem=()=>{
             data={ListData}
             renderItem={({item})=>
             <Pressable
+            onPress={()=>navigation.navigate('detailpage',{item:item})}
             style={{
             backgroundColor:"#FFFFFF",
             shadowColor:"#000",
@@ -23,24 +26,13 @@ const CardItem=()=>{
             paddingVertical:26,
             alignSelf:"center",
             marginRight: 16,
-
-        
-           
             }}
             >
                 <Image source={item.image} style={{width:150,height:150,resizeMode:"center"}}/>
                 <Text>{item.time}</Text>
-           </Pressable>}
-          
-          
-         
-           />
-        
-            
-            
-          
-        </View>
-        
+           </Pressable>}  
+           /> 
+        </View>    
     )
 }
 export default CardItem;

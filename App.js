@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ViewItem from './screen/home/ViewItem';
 import Home from './screen/home/Home';
 import { FontAwesome } from "@expo/vector-icons";
 import Menu from './screen/home/Menu';
@@ -13,6 +12,10 @@ import Message from "./screen/chat/Messagex";
 import ChatDetail from "./screen/chat/ChatDetails";
 import CallRinging from "./screen/chat/CallRinging";
 import Call from "./screen/chat/Call";
+import SearchPage from './screen/home/SearchPage';
+import AllView from './screen/home/AllView';
+import ViewItem from './screen/home/ViewItem';
+import DetailPage from './screen/home/DetailPage';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -77,11 +80,13 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name='home' component={BottomTab} />
-        <Stack.Screen name="viewitem" component={ViewItem} />
+        <Stack.Screen name="allview" component={ViewItem} />
         <Stack.Screen name="message" component={Message} />
         <Stack.Screen name="chatDetail" component={ChatDetail} />
         <Stack.Screen name="callRinging" component={CallRinging} />
         <Stack.Screen name="call" component={Call} />
+        <Stack.Screen name='searchs' component={SearchPage}/>
+        <Stack.Screen name='detailpage' component={DetailPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
