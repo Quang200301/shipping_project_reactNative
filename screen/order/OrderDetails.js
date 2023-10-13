@@ -9,6 +9,31 @@ import {
     Image
 } from "react-native";
 
+
+
+const Items = () => (
+    <View style={styles.item}>
+        <View style={styles.photoFrame}>
+            <Image style={styles.foodImage} source={require('../../assets/foodImages/foodimage1.png')} />
+        </View>
+        <View style={styles.foodInfor}>
+            <Text style={styles.menuName}> Spacy fresh crab</Text>
+            <Text style={styles.RestaurantName}> Waroenk kita</Text>
+            <Text style={styles.price}>$ 35</Text>
+        </View>
+        <View style={styles.action}>
+            <TouchableOpacity>
+                <Image source={require('../../assets/icons/IconMinus.png')} />
+            </TouchableOpacity>
+            <Text style={styles.quantity}>2</Text>
+            <TouchableOpacity>
+                <Image source={require('../../assets/icons/IconPlus.png')} />
+            </TouchableOpacity>
+        </View>
+    </View>
+)
+
+
 const OrderDetail = () => {
     return (
         <SafeAreaView>
@@ -22,21 +47,7 @@ const OrderDetail = () => {
 
                 <View style={styles.content}>
                     <View style={styles.flatListItem}>
-                        <View style={styles.item}>
-                            <View style={styles.photo}>
-                                <Image source={require('../../assets/icons/IconBack.png')} />
-                            </View>
-                            <View style={styles.foodInfor}>
-                                <Text style={styles.menuName}> Spacy fresh crab</Text>
-                                <Text style={styles.RestaurantName}> Waroenk kita</Text>
-                                <Text style={styles.price}>$ 35</Text>
-                            </View>
-                            <View style={styles.action}>
-                            <Image source={require('../../assets/icons/IconBack.png')} />
-                            <Text style={styles.quantity}>2</Text>
-                            <Image source={require('../../assets/icons/IconBack.png')} />
-                            </View>
-                        </View>
+                        <Items />
                     </View>
                 </View>
                 <View style={styles.footer}>
@@ -51,11 +62,11 @@ export default OrderDetail;
 
 const styles = StyleSheet.create({
     container: {
-        margin: 20,
+        margin: 10,
     },
     header: {
         height: '17%',
-        rowGap: 15,
+        rowGap: 10,
         alignItems: 'flex-start'
     },
     textTitle: {
@@ -63,7 +74,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     content: {
-        height: '63%',
+        height: '60%',
         backgroundColor: 'red',
     },
     flatListItem: {
@@ -77,25 +88,51 @@ const styles = StyleSheet.create({
         elevation: 4,
         backgroundColor: '#FFF',
         borderRadius: 22,
-        flexDirection:'row',
-        justifyContent:'space-around'
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     },
-    photo:{
-        flex:2,
-        backgroundColor:'red'
+    photoFrame: {
+        flex: 2,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    foodInfor:{
-        flex:3,
-        backgroundColor:'green'
-
+    foodInfor: {
+        flex: 3,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        rowGap: 5
     },
-    action:{
-        flex:2,
-        backgroundColor:'yellow'
-
+    menuName: {
+        fontSize: 15,
+        color: '#22242E',
+    },
+    RestaurantName: {
+        fontSize: 14,
+        color: '#22242E',
+        letterSpacing: 0.5,
+        opacity: 0.3,
+    },
+    price: {
+        fontSize: 19,
+        fontStyle: 'normal',
+        color: '#6B50F6',
+        fontWeight: 'bold',
+    },
+    action: {
+        flex: 2,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        columnGap: 10,
+        alignItems: "center",
+    },
+    quantity: {
+        fontSize: 16,
+        color: '#181818',
+        letterSpacing: 0.571,
+        opacity: 0.7,
     },
     footer: {
-        height: '20%',
+        height: '23%',
         backgroundColor: 'yellow',
     }
 })
