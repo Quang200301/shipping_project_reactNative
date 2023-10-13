@@ -27,28 +27,13 @@ export default function Voucher() {
             <Text style={styles.voucherTitle1}>
               Special Deal For {"\n"} October
             </Text>
-            <TouchableOpacity style={styles.button}>
               <Text style={styles.textbutton1}>Order Now</Text>
-            </TouchableOpacity>
+            
           </View>
         </View>
 
-        <View style={styles.backgroundAd2}>
-          <View style={styles.image}>
-            <Image
-              source={require("../../assets/images/vesgetable.png")}
-              style={styles.image2}
-            />
-          </View>
-          <View style={styles.voucherFrame}>
-            <Text style={styles.voucherTitle2}>
-              Special Deal For {"\n"} October
-            </Text>
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.textbutton2}>Order Now</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+       
+       
 
         <View style={styles.backgroundAd3}>
     
@@ -58,8 +43,6 @@ export default function Voucher() {
             </TouchableOpacity>
           </View>
         </View>
-        
-       
     </SafeAreaView>
   );
 }
@@ -84,7 +67,7 @@ const styles = StyleSheet.create({
   },
   backgroundAd3: {
     height:70,
-    backgroundColor: "#6B50F6",
+    backgroundColor: "yellow",
     borderRadius: 16,
     flexDirection: "row",
     justifyContent: "center",
@@ -125,7 +108,6 @@ const styles = StyleSheet.create({
     top: 5,
   },
   textbutton2: {
-    
     color:'#6B3A5B',
     marginRight: 40,
     textAlign: "center",
@@ -135,6 +117,5 @@ const styles = StyleSheet.create({
   but:{
     marginTop:20,
     fontSize:50,
-   
   }
 });
