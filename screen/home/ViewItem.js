@@ -12,7 +12,7 @@ const ViewItem = () => {
 
            
          <Header />
-        <>
+         <ScrollView>
                 <View style={{ flex: 1, width: "90%", alignSelf: "center" }}>
                     <Text style={{ fontSize: 20, fontWeight: "600", marginHorizontal: 16 }}>Populer Restaurant</Text>
                     <Text>
@@ -22,7 +22,7 @@ const ViewItem = () => {
                             data={ListData}
                             renderItem={({ item }) =>
                                 <Pressable
-                                    onPress={()=>navigation.navigate('  ',{item:item})}
+                                    onPress={()=>navigation.navigate('detailpage',{item:item})}
                                     style={{
                                         backgroundColor: "#FFFFFF",
                                         shadowColor: "#000",
@@ -55,8 +55,10 @@ const ViewItem = () => {
                    
                    <ViewNeares/>
                 </View>
+
+                </ScrollView>
                 </>
-        </>
+    
 
     )
 }

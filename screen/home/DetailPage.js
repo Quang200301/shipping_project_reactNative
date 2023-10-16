@@ -6,8 +6,8 @@ const DetailPage=({navigation,route})=>{
     console.log(item);
     return(
         <View style={{ backgroundColor:item.color,flex:1}}>
-            <Pressable  onPress={()=>navigation.goBack()}>
-                <FontAwesome  name={"arrow-circle-left"} size={28} color="white" style={{marginVertical:18}}/>
+            <Pressable style={{marginHorizontal:20,marginTop:5}}  onPress={()=>navigation.goBack()}>
+                <FontAwesome  name={"arrow-circle-left"} size={38} color="white" style={{marginVertical:18}}/>
             </Pressable>
             <View style={styles.imagesDetail}>
                 <Image source={item.image}

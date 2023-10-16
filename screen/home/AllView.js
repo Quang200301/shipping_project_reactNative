@@ -11,8 +11,8 @@ export default function AllView(){
                 <ViewItem/>
                 <ViewNeares/>
             </ScrollView>
-          
-        
+            
+            
         </View>
        
     )
