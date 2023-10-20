@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Alert, Platform } from "react-native";
-import { StyleSheet, SafeAreaView,Pressable, Text, View, TouchableOpacity, Image } from "react-native";
+import { Alert, ImageBackground, Platform } from "react-native";
+import { StyleSheet, SafeAreaView, Pressable, Text, View, TouchableOpacity, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
-import DropShadow from "react-native-drop-shadow";
 const Items = ({ data }) => (
     <View style={[styles.item, styles.boxShadow]}>
         <View style={styles.photoFrame}>
@@ -44,6 +43,21 @@ const OrderDetail = () => {
         },
         {
             id: 3,
+            meNuName: "Food from thi",
+            restaurantName: "Thi restaurant",
+            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
+            price: 35,
+            quantity: 2,
+        }, {
+            id: 4,
+            meNuName: "Food from thi",
+            restaurantName: "Thi restaurant",
+            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
+            price: 35,
+            quantity: 2,
+        },
+        {
+            id: 5,
             meNuName: "Food from thi",
             restaurantName: "Thi restaurant",
             image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
@@ -93,15 +107,22 @@ const OrderDetail = () => {
                     </View>
                 </View>
                 <View style={styles.footer}>
-                    <Text> footer</Text>
-                    <DropShadow style={styles.shadowProp}>
-                        <Pressable
-                            style={styles.button}
-                            onPress={() => console.log('pressed')}>
-                            <Text style={(styles.text, styles.buttonText)}>See more</Text>
-                        </Pressable>
-                    </DropShadow>
+                    <ImageBackground
+                        style={styles.PriceInfoBackground}
+                        source={require('../../assets/backgroundImages/PriceInfoBackground.png')}
+                    >
+                        <View>
+                            <View>
+                                <Text></Text>
+                            </View>
+                            <View>
+
+                            </View>
+                        </View>
+                        <View></View>
+                    </ImageBackground>
                 </View>
+
             </View>
 
         </SafeAreaView>
@@ -111,6 +132,7 @@ export default OrderDetail;
 const styles = StyleSheet.create({
     container: {
         margin: 10,
+        rowGap: 10
     },
     header: {
         height: '17%',
@@ -122,7 +144,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     content: {
-        height: '60%',
+        height: '40%',
     },
     flatListItem: {
         width: '100%',
@@ -187,32 +209,17 @@ const styles = StyleSheet.create({
         borderRadius: 22
     },
     footer: {
-        height: '23%',
+        marginTop: 100,
+        height: '28%',
         backgroundColor: 'yellow',
+        borderRadius: 22
     },
-    shadowProp: {
-        shadowColor: '#171717',
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.4,
-        shadowRadius: 2,
-    },
-    button: {
-        backgroundColor: '#4830D3',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 42,
-        borderRadius: 4,
-        marginTop: 30,
-    },
-    buttonText: {
-        color: '#fff',
-    },
-    text: {
-        fontSize: 16,
-        lineHeight: 21,
-        fontWeight: 'bold',
-        letterSpacing: 0.25,
-    },
+    PriceInfoBackground:{
+        height: '100%',
+        width:'100%'
+    }
+
+
 });
 
 const generateBoxShadowStyle = (
@@ -238,5 +245,5 @@ const generateBoxShadowStyle = (
         };
     }
 }
-generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 5, '#171717');
+generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 10, '#171717');
 
