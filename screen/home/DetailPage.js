@@ -24,10 +24,6 @@ const DetailPage=({navigation,route})=>{
 }
 export default DetailPage;
 const styles = StyleSheet.create({
-    // container:{
-    //     flex:1,
-    //     backgroundColor:item.color,
-    // },
     imagesDetail:{
      
         backgroundColor:'green',

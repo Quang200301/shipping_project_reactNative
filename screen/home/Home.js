@@ -32,7 +32,7 @@ const Home = ({ navigation }) => {
                     }}>
                         <FontAwesome name="search" size={28} color={"#6b50f6"} />
                         <TextInput style={{ paddingLeft: 8, fontSize: 16, color: '#808080' }}
-                            placeholder="What do you want to order ?"
+                            placeholder="What do you want to order ?" clearButtonMode="always"
 
                         >
                         </TextInput>

@@ -44,13 +44,10 @@ export default function App() {
             }
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
+          tabBarActiveTintColor: 'red', 
+          tabBarInactiveTintColor: 'blue', 
         })}
-        tabBarOptions={{
-          activeTintColor: 'red', // Màu cho tab được chọn
-          inactiveTintColor: 'blue', // Màu cho tab không được chọn
-          tabBarShowLabel: false,
-          
-        }}
+        
       >
         <Tab.Screen  name="Home" component={Home}
           options={{
@@ -87,6 +84,7 @@ export default function App() {
         <Stack.Screen name="call" component={Call} />
         <Stack.Screen name='searchs' component={SearchPage}/>
         <Stack.Screen name='detailpage' component={DetailPage}/>
+       
       </Stack.Navigator>
     </NavigationContainer>
   )
