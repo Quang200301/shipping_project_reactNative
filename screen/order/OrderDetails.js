@@ -1,23 +1,15 @@
-import React from "react";
-import {
-    StyleSheet,
-    SafeAreaView,
-    ImageBackground,
-    View,
-    TouchableOpacity,
-    Text,
-    Image
-} from "react-native";
-
-
-
-const Items = () => (
-    <View style={styles.item}>
+import React, { useState } from "react";
+import { Alert, Platform } from "react-native";
+import { StyleSheet, SafeAreaView,Pressable, Text, View, TouchableOpacity, Image } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
+import DropShadow from "react-native-drop-shadow";
+const Items = ({ data }) => (
+    <View style={[styles.item, styles.boxShadow]}>
         <View style={styles.photoFrame}>
             <Image style={styles.foodImage} source={require('../../assets/foodImages/foodimage1.png')} />
         </View>
         <View style={styles.foodInfor}>
-            <Text style={styles.menuName}> Spacy fresh crab</Text>
+            <Text style={styles.menuName}> {data.item.meNuName}</Text>
             <Text style={styles.RestaurantName}> Waroenk kita</Text>
             <Text style={styles.price}>$ 35</Text>
         </View>
@@ -32,9 +24,35 @@ const Items = () => (
         </View>
     </View>
 )
-
-
 const OrderDetail = () => {
+    const data = [
+        {
+            id: 1,
+            meNuName: "Food from Tai",
+            restaurantName: "Tai restaurant",
+            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
+            price: 35,
+            quantity: 2,
+        },
+        {
+            id: 2,
+            meNuName: "Food from Quang",
+            restaurantName: "Quang restaurant",
+            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
+            price: 35,
+            quantity: 2,
+        },
+        {
+            id: 3,
+            meNuName: "Food from thi",
+            restaurantName: "Thi restaurant",
+            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
+            price: 35,
+            quantity: 2,
+        }
+    ];
+    // Initialize DataOrders with data
+    const [DataOrders, setDataOrder] = useState(data);
     return (
         <SafeAreaView>
             <View style={styles.container}>
@@ -47,11 +65,42 @@ const OrderDetail = () => {
 
                 <View style={styles.content}>
                     <View style={styles.flatListItem}>
-                        <Items />
+                        <SwipeListView
+                            data={DataOrders} // Replace with your actual data
+                            renderItem={
+                                (data, rowMap) => (
+                                    <Items data={data} />
+                                )
+                            }
+                            renderHiddenItem={
+                                (data, rowMap) => (
+                                    <View style={styles.rowBack}>
+                                        <TouchableOpacity
+                                            style={{ marginRight: '5%' }}
+                                            onPress={() => Alert.alert(`You want delete the item from ${data.item.restaurantName}`)}
+                                        >
+                                            <Image
+                                                source={require('../../assets/icons/Icontrash.png')}
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            }
+                            contentContainerStyle={{ rowGap: 10 }}
+                            // leftOpenValue={40}
+                            rightOpenValue={-70}
+                        />
                     </View>
                 </View>
                 <View style={styles.footer}>
                     <Text> footer</Text>
+                    <DropShadow style={styles.shadowProp}>
+                        <Pressable
+                            style={styles.button}
+                            onPress={() => console.log('pressed')}>
+                            <Text style={(styles.text, styles.buttonText)}>See more</Text>
+                        </Pressable>
+                    </DropShadow>
                 </View>
             </View>
 
@@ -59,7 +108,6 @@ const OrderDetail = () => {
     )
 }
 export default OrderDetail;
-
 const styles = StyleSheet.create({
     container: {
         margin: 10,
@@ -75,22 +123,20 @@ const styles = StyleSheet.create({
     },
     content: {
         height: '60%',
-        backgroundColor: 'red',
     },
     flatListItem: {
-        backgroundColor: 'pink',
         width: '100%',
-        height: "100%"
+        height: "100%",
     },
     item: {
         width: '100%',
         height: 103,
-        elevation: 4,
         backgroundColor: '#FFF',
         borderRadius: 22,
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
+    boxShadow: {},
     photoFrame: {
         flex: 2,
         justifyContent: 'center',
@@ -131,37 +177,66 @@ const styles = StyleSheet.create({
         letterSpacing: 0.571,
         opacity: 0.7,
     },
+    rowBack: {
+        width: '100%',
+        height: '100%',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        backgroundColor: '#6B50F6',
+        alignItems: 'center',
+        borderRadius: 22
+    },
     footer: {
         height: '23%',
         backgroundColor: 'yellow',
+    },
+    shadowProp: {
+        shadowColor: '#171717',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+    },
+    button: {
+        backgroundColor: '#4830D3',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 42,
+        borderRadius: 4,
+        marginTop: 30,
+    },
+    buttonText: {
+        color: '#fff',
+    },
+    text: {
+        fontSize: 16,
+        lineHeight: 21,
+        fontWeight: 'bold',
+        letterSpacing: 0.25,
+    },
+});
+
+const generateBoxShadowStyle = (
+    xOffset,
+    yOffset,
+    shadowColorIos,
+    shadowOpacity,
+    shadowRadius,
+    elevation,
+    shadowColorAndroid,
+) => {
+    if (Platform.OS === 'ios') {
+        styles.boxShadow = {
+            shadowColor: shadowColorIos,
+            shadowOffset: { width: xOffset, height: yOffset },
+            shadowOpacity,
+            shadowRadius,
+        };
+    } else if (Platform.OS === "android") {
+        styles.boxShadow = {
+            elevation,
+            shadowColor: shadowColorAndroid,
+        };
     }
-})
+}
+generateBoxShadowStyle(-2, 4, '#171717', 0.2, 3, 5, '#171717');
 
-
-
-// const [DataOrders, setDataOrder] = useState([
-//     {
-//         id: 1,
-//         meNuName: "Spacy fresh crab",
-//         restaurantName: "Waroenk kita",
-//         image: require(''),
-//         price: 35,
-//         quantity: 2,
-//     },
-//     {
-//         id: 2,
-//         meNuName: "Spacy fresh crab",
-//         restaurantName: "Waroenk kita",
-//         image: require(''),
-//         price: 35,
-//         quantity: 2,
-//     },
-//     {
-//         id: 3,
-//         meNuName: "Spacy fresh crab",
-//         restaurantName: "Waroenk kita",
-//         image: require(''),
-//         price: 35,
-//         quantity: 2,
-//     }
-// ]);
