@@ -16,6 +16,7 @@ import SearchPage from './screen/home/SearchPage';
 import AllView from './screen/home/AllView';
 import ViewItem from './screen/home/ViewItem';
 import DetailPage from './screen/home/DetailPage';
+import ShoppingCartPage from './screen/home/ShoppingCartPage';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
       <Tab.Navigator
      
         screenOptions={({ route }) => ({
+         
           headerShown: false,
           tabBarLabel: ({ focused, color }) => {
             if (focused) {
@@ -60,7 +62,7 @@ export default function App() {
             tabBarIcon: ({ color }) => <FontAwesome name='user' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="Cart" component={Home}
+        <Tab.Screen name="Cart" component={ShoppingCartPage}
           options={{
             tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,
           }}

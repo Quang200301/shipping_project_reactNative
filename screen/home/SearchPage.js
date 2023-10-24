@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, TouchableOpacity, Image, FlatList } from 'react-native';
 import { FontAwesome } from "@expo/vector-icons";
 import { ListData } from "./ListData";
-import { useNavigation } from "@react-navigation/native";
 export default function SearchPage() {
-   const navigation = useNavigation();
    const [selectedCategory, setSelectedCategory] = useState(null);
    const renderItem = ({ item }) => {
     if (selectedCategory && item.category !== selectedCategory) {
@@ -75,7 +73,25 @@ const selectCategory = (category) => {
                 >
                     <Text style={{ color: '#6B50F6' }}>Thịt Khô Vùng Núi</Text>
                 </TouchableOpacity>
-            </View>
+                {/* {selectedCategory !== 'haisan' && (
+            <Pressable
+              style={styles.button}
+              onPress={() => selectCategory('haisan')}
+            >
+              <Text style={{ color: '#6B50F6' }}>Hải Sản Tươi</Text>
+            </Pressable>
+          )}
+          {selectedCategory !== 'thitkho' && (
+            <Pressable
+              style={styles.button}
+              onPress={() => selectCategory('thitkho')}
+            >
+              <Text style={{ color: '#6B50F6' }}>Thịt Khô Vùng Núi</Text>
+            </Pressable>
+          )} */}
+                
+                </View>
+                
             {selectedCategory && (
             <FlatList
                 data={ListData}

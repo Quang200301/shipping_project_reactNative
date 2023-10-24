@@ -6,7 +6,6 @@ import Header from "./Header";
 export default function AllView(){
     return(
         <View>
-            <Header/>
             <ScrollView>
                 <ViewItem/>
                 <ViewNeares/>

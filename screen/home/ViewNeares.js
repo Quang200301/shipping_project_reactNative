@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, FlatList, Pressable, Image, ScrollView, StyleSheet, View } from "react-native";
+import { Text, FlatList, Pressable, Image, StyleSheet, View } from "react-native";
 import {  NearestData } from "./ListData";
 const ViewNeares = () => {
     return (

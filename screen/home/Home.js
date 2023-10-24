@@ -1,4 +1,4 @@
-import react from "react";
+
 import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import CardItem from "./CardItem";
@@ -33,6 +33,7 @@ const Home = ({ navigation }) => {
                         <FontAwesome name="search" size={28} color={"#6b50f6"} />
                         <TextInput style={{ paddingLeft: 8, fontSize: 16, color: '#808080' }}
                             placeholder="What do you want to order ?" clearButtonMode="always"
+                            
 
                         >
                         </TextInput>
@@ -44,7 +45,7 @@ const Home = ({ navigation }) => {
                         <Image source={require("../../assets/icons/FilterSearch.png")} style={{ width: 55, height: 55, marginVertical: 20 }} />
                     </Pressable>
                 </Pressable>
-                <View style={{ flexDirection: "row", width: "95%",left:10, backgroundColor: "grey", alignItems: "center", borderRadius: 8, gap: 20, alignSelf: "center", justifyContent: "center" }}>
+                <View style={{ flexDirection: "row", width: "95%",left:10, backgroundColor: "#6B50F6", alignItems: "center", borderRadius: 8, gap: 20, alignSelf: "center", justifyContent: "center" }}>
                     <Image style={{ width: 150, height: 200, resizeMode: 'contain' }} source={require("../../assets/images/hotdog.png")} />
                     <View>
                         <Text style={{ fontSize: 20, fontWeight: "bold", color: 'white' }}>Do you love it</Text>
@@ -66,14 +67,15 @@ const Home = ({ navigation }) => {
 
                     <CardItem />
                 </View>
-                <View >
-                <Text style={{fontSize:20,fontWeight:"bold",marginHorizontal:26}}>Populer Menu</Text>
-                    <Menu/>
-                </View>
+               
             </View>
             
-
+            <View >
+                <Text style={{fontSize:20,fontWeight:"bold",marginHorizontal:26}}>Populer Menu</Text>
+                <Menu/>
+            </View>
         </SafeAreaView>
+       
         </ScrollView>
 
     )
