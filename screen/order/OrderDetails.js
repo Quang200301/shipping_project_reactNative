@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, ImageBackground, Platform } from "react-native";
+import { Alert, Button, ImageBackground, Platform } from "react-native";
 import { StyleSheet, SafeAreaView, Pressable, Text, View, TouchableOpacity, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 const Items = ({ data }) => (
@@ -31,7 +31,7 @@ const OrderDetail = () => {
             restaurantName: "Tai restaurant",
             image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
             price: 35,
-            quantity: 2,
+            quantity: 4,
         },
         {
             id: 2,
@@ -81,11 +81,16 @@ const OrderDetail = () => {
                     <View style={styles.flatListItem}>
                         <SwipeListView
                             data={DataOrders} // Replace with your actual data
+
+
+                            //render item apperace.
                             renderItem={
                                 (data, rowMap) => (
                                     <Items data={data} />
                                 )
                             }
+
+                            // render hiden items
                             renderHiddenItem={
                                 (data, rowMap) => (
                                     <View style={styles.rowBack}>
@@ -101,26 +106,40 @@ const OrderDetail = () => {
                                 )
                             }
                             contentContainerStyle={{ rowGap: 10 }}
+                            style={styles.menuList}
                             // leftOpenValue={40}
                             rightOpenValue={-70}
                         />
                     </View>
                 </View>
                 <View style={styles.footer}>
-                    <ImageBackground
-                        style={styles.PriceInfoBackground}
-                        source={require('../../assets/backgroundImages/PriceInfoBackground.png')}
-                    >
-                        <View>
-                            <View>
-                                <Text></Text>
-                            </View>
-                            <View>
-
-                            </View>
+                    <View style={styles.totalPayment}>
+                        <View style={styles.detailInvoid}>
+                            <Text> Sub - Total</Text>
+                            <Text> 120 $</Text>
                         </View>
-                        <View></View>
-                    </ImageBackground>
+                        <View style={styles.detailInvoid}>
+                            <Text> Delivery Charge</Text>
+                            <Text> 10 $</Text>
+                        </View>
+
+                        <View style={styles.detailInvoid}>
+                            <Text> Discount</Text>
+                            <Text> 20 $</Text>
+                        </View>
+
+                        <View style={[styles.detailInvoid,{fontSize: 30}]}>
+                            <Text> Total</Text>
+                            <Text> 150 $</Text>
+                        </View>
+                    </View>
+                    
+                    <View>
+
+                        <Button
+                        title="Place my Order"
+                        /> 
+                    </View> 
                 </View>
 
             </View>
@@ -131,6 +150,7 @@ const OrderDetail = () => {
 export default OrderDetail;
 const styles = StyleSheet.create({
     container: {
+        height: '100%',
         margin: 10,
         rowGap: 10
     },
@@ -209,14 +229,22 @@ const styles = StyleSheet.create({
         borderRadius: 22
     },
     footer: {
-        marginTop: 100,
-        height: '28%',
-        backgroundColor: 'yellow',
-        borderRadius: 22
+        elevation: 10,
+        marginTop: '2%',
+        height: '30%',
+        borderRadius: 10
     },
-    PriceInfoBackground:{
+    totalPayment: {
+        padding: 10,
+        backgroundColor: '#6B50F6',
+        width: '100%',
         height: '100%',
-        width:'100%'
+        borderRadius: 22,
+    },
+    detailInvoid: {
+        backgroundColor: 'red',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     }
 
 
