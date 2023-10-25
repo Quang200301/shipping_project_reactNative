@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, ImageBackground, Platform } from "react-native";
+import { Alert, ImageBackground, Platform } from "react-native";
 import { StyleSheet, SafeAreaView, Pressable, Text, View, TouchableOpacity, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
 import NumericInput from 'react-native-numeric-input';
@@ -118,9 +118,8 @@ export default function OrderDetail(){
                     </View>
                     
                     <View  style={{padding:20}}>
-
+                    
                         <Button
-                       
                         title="Place my Order"
                         /> 
                     </View> 
