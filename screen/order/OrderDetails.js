@@ -6,6 +6,49 @@ import NumericInput from 'react-native-numeric-input';
 import { Button } from '@rneui/themed';
 import { ListData } from "../home/ListData.js";
 import { StatusBar } from "expo-status-bar";
+
+const TotalPayment = () => (
+    <View style={styles.totalPayment}>
+        <View style={styles.detailInvoid}>
+            <Text style={styles.TextInvoice}> Sub - Total</Text>
+            <Text style={styles.TextInvoice}>{totalAmount}$</Text>
+        </View>
+
+        <View style={styles.detailInvoid}>
+            <Text style={styles.TextInvoice}> Delivery Charge</Text>
+            <Text style={styles.TextInvoice}> 10 $</Text>
+        </View>
+
+        <View style={styles.detailInvoid}>
+            <Text style={styles.TextInvoice}> Discount</Text>
+            <Text style={styles.TextInvoice}> 20 $</Text>
+        </View>
+        <View style={[styles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
+            <Text style={[styles.TextInvoice, { fontSize: 18 }]}> Total</Text>
+            <Text style={[styles.TextInvoice, { fontSize: 18 }]}> {totalAmount} $</Text>
+        </View>
+        <View style={{ width: '100%', height: "40%" }}>
+            <Button
+                title="Place my Order"
+                containerStyle={{
+                    width: "93%",
+                    height: "70%",
+                    alignSelf: 'center',
+                    elevation: 4,
+                    marginTop: 50,
+                }}
+                buttonStyle={{
+                    height: '100%',
+                    backgroundColor: '#FEFEFF',
+                    borderRadius: 15,
+
+                }}
+                titleStyle={{ color: '#6B50F6', fontSize: 14 }}
+            />
+        </View>
+    </View>
+)
+export {TotalPayment};
 export default function OrderDetail() {
     if (ListData) {
         var newData = [...ListData];
@@ -52,60 +95,17 @@ export default function OrderDetail() {
             </View>
         </View>
     )
-    const TotalPayment = () => (
-        <View style={styles.totalPayment}>
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Sub - Total</Text>
-                <Text style={styles.TextInvoice}>{totalAmount}$</Text>
-            </View>
-
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Delivery Charge</Text>
-                <Text style={styles.TextInvoice}> 10 $</Text>
-            </View>
-
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Discount</Text>
-                <Text style={styles.TextInvoice}> 20 $</Text>
-            </View>
-            <View style={[styles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
-                <Text style={[styles.TextInvoice, { fontSize: 18 }]}> Total</Text>
-                <Text style={[styles.TextInvoice, { fontSize: 18 }]}> {totalAmount} $</Text>
-            </View>
-            <View style={{ width: '100%', height: "40%" }}>
-                <Button
-                    title="Place my Order"
-                    containerStyle={{
-                        width: "93%",
-                        height: "70%",
-                        alignSelf: 'center',
-                        elevation: 4,
-                        marginTop: 50,
-                    }}
-                    buttonStyle={{
-                        height: '100%',
-                        backgroundColor: '#FEFEFF',
-                        borderRadius: 15,
-
-                    }}
-                    titleStyle={{ color: '#6B50F6', fontSize: 14 }}
-                />
-            </View>
-        </View>
-    )
+    
     const FlatListItem = () => (
         <View style={styles.flatListItem}>
             <SwipeListView
                 data={DataOrders} // Replace with your actual data
-
-
                 //render item apperace.
                 renderItem={
                     (data, rowMap) => (
                         <Items data={data} />
                     )
                 }
-
                 // render hiden items
                 renderHiddenItem={
                     (data, rowMap) => (
@@ -136,11 +136,12 @@ export default function OrderDetail() {
             <Text style={styles.textTitle} selectionColor={'pink'}>Order details</Text>
         </View>
     )
+
     return (
         <SafeAreaView>
             <StatusBar hidden={true} />
             <View style={styles.container}>
-                <Header/>
+                <Header />
                 <View style={styles.content}>
                     <FlatListItem />
                 </View>
@@ -150,8 +151,8 @@ export default function OrderDetail() {
             </View>
         </SafeAreaView>
     )
-
 }
+
 const styles = StyleSheet.create({
     container: {
         height: '100%',
