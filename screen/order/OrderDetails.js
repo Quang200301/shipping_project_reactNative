@@ -18,7 +18,11 @@ export default function OrderDetail(){
         // Tổng giá trị sản phẩm = giá sản phẩm * số lượng
         return total + product.quantity * product.price;
       }, 0);
-      
+    //   delete
+    const handleDeleteItem = (itemId) => {
+        const updatedItems = DataOrders.filter((item) => item.id !== itemId);
+        setDataorder(updatedItems);
+      };
     const Items = ({ data }) => (
     <View style={[styles.item, styles.boxShadow]}>
         <View style={styles.photoFrame}>
@@ -75,7 +79,7 @@ export default function OrderDetail(){
                                     <View style={styles.rowBack}>
                                         <TouchableOpacity
                                             style={{ marginRight: '5%' }}
-                                            onPress={() => Alert.alert(`You want delete the item from ${data.item.name}`)}
+                                            onPress={() => handleDeleteItem(data.item.id)}
                                         >
                                             <Image
                                                 source={require('../../assets/icons/Icontrash.png')}
