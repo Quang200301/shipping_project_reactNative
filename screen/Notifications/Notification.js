@@ -13,6 +13,10 @@ export default function Voucher() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
+      <Image
+                source={require("../../assets/images/combackicon.png")}
+                style={styles.image1}
+              />
         <View>
           <Text style={styles.textTile}>Notification</Text>
         </View>
@@ -71,8 +75,8 @@ const styles = StyleSheet.create({
   },
   textTile: {
     fontSize: 25,
-    marginTop: 50,
-    marginLeft: 20,
+    marginTop: 30,
+    marginLeft: 30,
     marginBottom: 20,
   },
   itemframe:{
@@ -84,7 +88,16 @@ const styles = StyleSheet.create({
 
   backgroundAd: {
     height: 100,
-    backgroundColor: "pink",
+    backgroundColor:"white",
+    shadowColor: "#000",
+     shadowOffset: {
+	   width: 0,
+	height: 2,
+},
+shadowOpacity: 0.25,
+shadowRadius: 3.84,
+
+elevation: 5,
     padding: 5,
     flexDirection: "row",
     borderRadius: 20,
@@ -101,22 +114,21 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   voucherTitle: {
-    color: "white",
+    color: "black",
     fontSize: 15,
     marginTop: 15,
   },
   voucherTitle2: {
     color: "#fff",
   },
+  image1:{
+    marginLeft:20,
+    marginBottom:-20,
+
+  },
   textbutton: {
     color: "grey",
   },
-  //   textbutton2: {
-  //     color: "#ffff",
-  //     marginRight: 40,
-  //     textAlign: "center",
-  //     left: 20,
-  //   },
   but: {
     fontSize: 50,
   },
