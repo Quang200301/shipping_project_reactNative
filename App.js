@@ -17,6 +17,7 @@ import AllView from './screen/home/AllView';
 import ViewItem from './screen/home/ViewItem';
 import DetailPage from './screen/home/DetailPage';
 import TestSwipeListView from "./screen/order/OrderDetails";
+import ShoppingCartPage from './screen/home/ShoppingCartPage';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function App() {

@@ -2,71 +2,50 @@ import React, { useState } from "react";
 import { Alert, Button, ImageBackground, Platform } from "react-native";
 import { StyleSheet, SafeAreaView, Pressable, Text, View, TouchableOpacity, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
-const Items = ({ data }) => (
+import NumericInput from 'react-native-numeric-input';
+import { ListData } from "../home/ListData.js";
+export default function OrderDetail(){
+    if (ListData) {
+        var newData = [...ListData];
+        console.log('...........', newData);
+      } else {
+        console.log('ListData is undefined or not yet loaded.');
+      }
+      const [DataOrders,setDataorder]=useState(newData);
+      const [value,setValue] =useState(0);
+      const totalAmount = DataOrders.reduce((total, product) => {
+        var quantity = value
+        // Tổng giá trị sản phẩm = giá sản phẩm * số lượng
+        return total + product.quantity * product.price;
+      }, 0);
+      
+    const Items = ({ data }) => (
     <View style={[styles.item, styles.boxShadow]}>
         <View style={styles.photoFrame}>
-            <Image style={styles.foodImage} source={require('../../assets/foodImages/foodimage1.png')} />
+            <Image style={styles.foodImage} source={data.item.image } />
         </View>
         <View style={styles.foodInfor}>
-            <Text style={styles.menuName}> {data.item.meNuName}</Text>
+            <Text style={styles.menuName}> {data.item.name}</Text>
             <Text style={styles.RestaurantName}> Waroenk kita</Text>
-            <Text style={styles.price}>$ 35</Text>
+            <Text style={styles.price}>{data.item.price}</Text>
         </View>
         <View style={styles.action}>
-            <TouchableOpacity>
-                <Image source={require('../../assets/icons/IconMinus.png')} />
-            </TouchableOpacity>
-            <Text style={styles.quantity}>2</Text>
-            <TouchableOpacity>
-                <Image source={require('../../assets/icons/IconPlus.png')} />
-            </TouchableOpacity>
+             <NumericInput
+                   value={value}
+                   onChange={() => setValue(value)}
+                    onLimitReached={(isMax, msg) => console.log(isMax, msg)}
+                    totalWidth={80}
+                    totalHeight={30}
+                    iconSize={50}
+                    step={1}
+                    rounded
+                    iconStyle={{ color: '#FFFFFF' }}
+                    rightButtonBackgroundColor="#3F51B5"
+                    leftButtonBackgroundColor="#BDBDBD"
+                />  
         </View>
     </View>
-)
-const OrderDetail = () => {
-    const data = [
-        {
-            id: 1,
-            meNuName: "Food from Tai",
-            restaurantName: "Tai restaurant",
-            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
-            price: 35,
-            quantity: 4,
-        },
-        {
-            id: 2,
-            meNuName: "Food from Quang",
-            restaurantName: "Quang restaurant",
-            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
-            price: 35,
-            quantity: 2,
-        },
-        {
-            id: 3,
-            meNuName: "Food from thi",
-            restaurantName: "Thi restaurant",
-            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
-            price: 35,
-            quantity: 2,
-        }, {
-            id: 4,
-            meNuName: "Food from thi",
-            restaurantName: "Thi restaurant",
-            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
-            price: 35,
-            quantity: 2,
-        },
-        {
-            id: 5,
-            meNuName: "Food from thi",
-            restaurantName: "Thi restaurant",
-            image: require('../../assets/foodImages/foodimage1.png'), // Replace with the actual image path
-            price: 35,
-            quantity: 2,
-        }
-    ];
-    // Initialize DataOrders with data
-    const [DataOrders, setDataOrder] = useState(data);
+) 
     return (
         <SafeAreaView>
             <View style={styles.container}>
@@ -96,7 +75,7 @@ const OrderDetail = () => {
                                     <View style={styles.rowBack}>
                                         <TouchableOpacity
                                             style={{ marginRight: '5%' }}
-                                            onPress={() => Alert.alert(`You want delete the item from ${data.item.restaurantName}`)}
+                                            onPress={() => Alert.alert(`You want delete the item from ${data.item.name}`)}
                                         >
                                             <Image
                                                 source={require('../../assets/icons/Icontrash.png')}
@@ -115,28 +94,29 @@ const OrderDetail = () => {
                 <View style={styles.footer}>
                     <View style={styles.totalPayment}>
                         <View style={styles.detailInvoid}>
-                            <Text> Sub - Total</Text>
-                            <Text> 120 $</Text>
+                            <Text style={{fontSize:20}}> Sub - Total</Text>
+                            <Text>{totalAmount}$</Text>
                         </View>
                         <View style={styles.detailInvoid}>
-                            <Text> Delivery Charge</Text>
+                            <Text style={{fontSize:20}}> Delivery Charge</Text>
                             <Text> 10 $</Text>
                         </View>
 
                         <View style={styles.detailInvoid}>
-                            <Text> Discount</Text>
+                            <Text style={{fontSize:20}}> Discount</Text>
                             <Text> 20 $</Text>
                         </View>
 
                         <View style={[styles.detailInvoid,{fontSize: 30}]}>
-                            <Text> Total</Text>
-                            <Text> 150 $</Text>
+                            <Text style={{fontSize:20}}> Total</Text>
+                            <Text> {totalAmount} $</Text>
                         </View>
                     </View>
                     
-                    <View>
+                    <View  style={{padding:20}}>
 
                         <Button
+                       
                         title="Place my Order"
                         /> 
                     </View> 
@@ -146,8 +126,8 @@ const OrderDetail = () => {
 
         </SafeAreaView>
     )
+
 }
-export default OrderDetail;
 const styles = StyleSheet.create({
     container: {
         height: '100%',
@@ -178,14 +158,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
     },
-    boxShadow: {},
+    boxShadow: {
+    },
     photoFrame: {
-        flex: 2,
-        justifyContent: 'center',
-        alignItems: 'center'
+       flex:4,
+        justifyContent:'center',
+        alignItems:"center"
+
     },
     foodInfor: {
-        flex: 3,
+        flex: 4,
         justifyContent: 'center',
         alignItems: 'flex-start',
         rowGap: 5
@@ -207,7 +189,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     action: {
-        flex: 2,
+        flex: 3,
         flexDirection: 'row',
         justifyContent: 'center',
         columnGap: 10,
@@ -230,21 +212,25 @@ const styles = StyleSheet.create({
     },
     footer: {
         elevation: 10,
-        marginTop: '2%',
-        height: '30%',
+        marginTop: '3%',
+        height: '20%',
         borderRadius: 10
     },
     totalPayment: {
-        padding: 10,
+        padding: 20,
         backgroundColor: '#6B50F6',
         width: '100%',
         height: '100%',
         borderRadius: 22,
     },
     detailInvoid: {
-        backgroundColor: 'red',
+   
         flexDirection: 'row',
         justifyContent: 'space-between'
+    },
+    foodImage:{
+        width:100,
+        height:100,
     }
 
 
