@@ -2,26 +2,47 @@ import React, { useState } from "react";
 import { Alert, Button, ImageBackground, Platform } from "react-native";
 import { StyleSheet, SafeAreaView, Pressable, Text, View, TouchableOpacity, Image } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
-import NumericInput from 'react-native-numeric-input';
 import { ListData } from "../home/ListData.js";
 export default function OrderDetail(){
+    const [quantity, setQuantity] = useState(1);
     if (ListData) {
         var newData = [...ListData];
-        console.log('...........', newData);
       } else {
         console.log('ListData is undefined or not yet loaded.');
       }
       const [DataOrders,setDataorder]=useState(newData);
-      const [value,setValue] =useState(0);
-      const totalAmount = DataOrders.reduce((total, product) => {
-        var quantity = value
-        // Tổng giá trị sản phẩm = giá sản phẩm * số lượng
-        return total + product.quantity * product.price;
-      }, 0);
-    //   delete
     const handleDeleteItem = (itemId) => {
+
+    
         const updatedItems = DataOrders.filter((item) => item.id !== itemId);
         setDataorder(updatedItems);
+      };
+      const handleDecrease = (itemId) => {
+        if(quantity.lengh>1){
+            setQuantity((prevQuantity) => ({
+                ...prevQuantity,
+                [itemId]: (prevQuantity[itemId] || 0) - 1,
+              }));
+        }
+           
+      };
+    
+      const handleIncrease = (itemId) => {
+        setQuantity((prevQuantity) => ({
+          ...prevQuantity,
+          [itemId]: (prevQuantity[itemId] || 0) + 1,
+        }));
+      };
+
+      const calculateTotal = () => {
+        let total = 0;
+        for (const item of DataOrders) {
+          // Ensure the item has a valid quantity and price
+          if (item.quantity && item.price) {
+            total += item.quantity * item.price;
+          }
+        }
+        return total;
       };
     const Items = ({ data }) => (
     <View style={[styles.item, styles.boxShadow]}>
@@ -34,19 +55,13 @@ export default function OrderDetail(){
             <Text style={styles.price}>{data.item.price}</Text>
         </View>
         <View style={styles.action}>
-             <NumericInput
-                   value={value}
-                   onChange={() => setValue(value)}
-                    onLimitReached={(isMax, msg) => console.log(isMax, msg)}
-                    totalWidth={80}
-                    totalHeight={30}
-                    iconSize={50}
-                    step={1}
-                    rounded
-                    iconStyle={{ color: '#FFFFFF' }}
-                    rightButtonBackgroundColor="#3F51B5"
-                    leftButtonBackgroundColor="#BDBDBD"
-                />  
+            <TouchableOpacity onPress={() => handleDecrease(data.item.id)}>
+            <Text style={styles.quantityButtondes}>-</Text>
+            </TouchableOpacity>
+            <Text>{quantity[data.item.id] || 1}</Text>
+            <TouchableOpacity onPress={() => handleIncrease(data.item.id)}>
+            <Text style={styles.quantityButton}>+</Text>
+            </TouchableOpacity>
         </View>
     </View>
 ) 
@@ -99,7 +114,7 @@ export default function OrderDetail(){
                     <View style={styles.totalPayment}>
                         <View style={styles.detailInvoid}>
                             <Text style={{fontSize:20}}> Sub - Total</Text>
-                            <Text>{totalAmount}$</Text>
+                            <Text>100$</Text>
                         </View>
                         <View style={styles.detailInvoid}>
                             <Text style={{fontSize:20}}> Delivery Charge</Text>
@@ -113,7 +128,7 @@ export default function OrderDetail(){
 
                         <View style={[styles.detailInvoid,{fontSize: 30}]}>
                             <Text style={{fontSize:20}}> Total</Text>
-                            <Text> {totalAmount} $</Text>
+                            <Text>{calculateTotal()}$</Text>
                         </View>
                     </View>
                     
@@ -191,6 +206,18 @@ const styles = StyleSheet.create({
         fontStyle: 'normal',
         color: '#6B50F6',
         fontWeight: 'bold',
+    },
+    quantityButton:{
+        paddingHorizontal:8,
+        fontSize:18,
+        backgroundColor:'#6B50F6',
+        borderRadius:8
+    },
+    quantityButtondes:{
+        paddingHorizontal:8,
+        fontSize:18,
+        backgroundColor:'#E0E0E0',
+        borderRadius:8
     },
     action: {
         flex: 3,
