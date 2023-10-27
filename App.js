@@ -87,7 +87,7 @@ export default function App() {
         <Stack.Screen name="call" component={Call} />
         <Stack.Screen name='searchs' component={SearchPage}/>
         <Stack.Screen name='detailpage' component={DetailPage}/>
-       
+        <Stack.Screen name='Test' component={DetailPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   )
