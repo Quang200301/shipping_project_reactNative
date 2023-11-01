@@ -22,7 +22,7 @@ export default function ProductCart({ navigation }) {
               <Text style={styles.price}>{item.price} $</Text>
             </View>
             <TouchableOpacity onPress={() => addToCart(item)}>
-              <Text style={{ borderWidth: 1, borderRadius: 6,color:'#6B50F6',fontWeight:'800'}}>Add cart</Text>
+              <Text style={{color:'#6B50F6',fontWeight:'900'}}>Add Cart</Text>
             </TouchableOpacity>
           </SafeAreaView>
         );

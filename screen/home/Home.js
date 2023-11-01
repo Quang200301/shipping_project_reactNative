@@ -1,5 +1,5 @@
 
-import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, ScrollView } from "react-native";
+import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import CardItem from "./CardItem";
 import Menu from "./Menu";
@@ -50,12 +50,12 @@ const Home = ({ navigation }) => {
                     <Image style={{ width: 150, height: 200, resizeMode: 'contain' }} source={require("../../assets/images/hotdog.png")} />
                     <View>
                         <Text style={{ fontSize: 20, fontWeight: "bold", color: 'white' }}>Do you love it</Text>
-                        <Pressable>
+                        <TouchableOpacity onPress={()=>navigation.navigate('Cart')}>
                             <Text style={{ width: 70, height: 30, backgroundColor: "white", justifyContent: "center", alignItems: "center", fontSize: 15, paddingHorizontal: 5, borderRadius: 8, marginTop: 10, paddingTop: 5 }}>
                                 Buy now
                             </Text>
 
-                        </Pressable>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={{ paddingVertical: 16, }}>

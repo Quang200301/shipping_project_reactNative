@@ -43,7 +43,7 @@ export default function CartOrder() {
                 <Text style={[styles.TextInvoice, { fontSize: 18 }]}> {totalPrice} $</Text>
             </View>
             <TouchableOpacity style={styles.order}>
-                <Text style={styles.placeOrder}>Order</Text>
+                <Text style={styles.placeOrder}>Place My Order</Text>
             </TouchableOpacity>
 
         </View>
@@ -54,27 +54,27 @@ export default function CartOrder() {
                
                 <Image source={data.item.image} style={{ width: 70, height: 70 }} />
                 <View>
-                    <Text>{data.item.name}</Text>
+                    <Text style={{ fontSize:18,fontWeight:'700'}}>{data.item.name}</Text>
                 </View>
                 <View>
-                    <Text style={{ color: '#3F51B5', fontWeight: '800' }}>{data.item.totalPrice} $</Text>
+                    <Text style={{ fontSize:18,color: '#3F51B5', fontWeight: '800' }}>{data.item.totalPrice} $</Text>
                 </View>
                 <TouchableOpacity onPress={() => decrementItemQuantity(data.item)}>
-                    <Text><Entypo name="minus" size={20} color="black" /></Text>
+                    <Text  style={{backgroundColor:'#FF9012',borderRadius:9}}><Entypo name="minus" size={20} color="white" /></Text>
                 </TouchableOpacity>
 
                 <Text style={{ fontWeight: '800' }}>{data.item.quantity}</Text>
 
                 <TouchableOpacity onPress={() => incrementItemQuantity(data.item)}>
-                    <Text><Entypo name="plus" size={20} color="black" /></Text>
+                    <Text style={{backgroundColor:'#6B50F6',borderRadius:9}}><Entypo name="plus" size={20} color="white" /></Text>
                 </TouchableOpacity>
             </View>
         )
     }
     return (
         <SafeAreaView style={styles.container}>
-            <View>
-                <Text>shoping Cart</Text>
+            <View style={{marginVertical:20,marginHorizontal:18}}>
+                <Text style={{fontSize:25,fontWeight:'800'}}>Order details</Text>
             </View>
 
             {/* Swipe list */}
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
         borderRadius: 12
     },
     placeOrder: {
-        color: '#1976D2',
+        color: '#6B50F6',
         fontSize: 20,
         fontWeight: '900'
     }
