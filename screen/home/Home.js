@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, Scro
 import { FontAwesome } from "@expo/vector-icons";
 import CardItem from "./CardItem";
 import Menu from "./Menu";
+import ProductCart from "../order/ProductCart";
 const Home = ({ navigation }) => {
     return (
         <ScrollView>
@@ -72,7 +73,7 @@ const Home = ({ navigation }) => {
             
             <View >
                 <Text style={{fontSize:20,fontWeight:"bold",marginHorizontal:26}}>Populer Menu</Text>
-                <Menu/>
+               <ProductCart/>
             </View>
         </SafeAreaView>
        
