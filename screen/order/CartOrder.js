@@ -1,23 +1,28 @@
-import { View, Text, SafeAreaView, FlatList,Image,StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react';
 import { Entypo } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementQuantity } from '../../components/features/counterSlice';
 import { decrementQuantity } from '../../components/features/counterSlice';
-import { selectTotalAllPrice,selectTotalAllQuantity } from '../../components/features/cartSelectors';
+import { removeItem } from '../../components/features/counterSlice';
+import { selectTotalAllPrice, selectTotalAllQuantity } from '../../components/features/cartSelectors';
+import { SwipeListView } from "react-native-swipe-list-view";
+
 export default function CartOrder() {
     const dispatch = useDispatch();
-    const CartItems= useSelector((state)=>state.cart.cart);
+    const CartItems = useSelector((state) => state.cart.cart);
     const totalQuantity = useSelector(selectTotalAllQuantity);
     const totalPrice = useSelector(selectTotalAllPrice);
     const incrementItemQuantity = (item) => {
         dispatch(incrementQuantity(item));
-      };
-      const decrementItemQuantity = (item) => {
+    };
+    const decrementItemQuantity = (item) => {
         dispatch(decrementQuantity(item));
-      };
-
-      const TotalPayment = () => (
+    };
+    const removeItemfromCart=(item)=>{
+        dispatch(removeItem(item))
+    }
+    const TotalPayment = () => (
         <View style={styles.totalPayment}>
             <View style={styles.detailInvoid}>
                 <Text style={styles.TextInvoice}> Sub - Total</Text>
@@ -40,90 +45,118 @@ export default function CartOrder() {
             <TouchableOpacity style={styles.order}>
                 <Text style={styles.placeOrder}>Order</Text>
             </TouchableOpacity>
-           
+
         </View>
     )
-    const renderItem=({item})=>{
-        return(
+    const RenderItem = ({ data }) => {
+        return (
             <View style={styles.itemCart}>
-                <Image source={item.image} style={{width:70,height:70}}/>
+               
+                <Image source={data.item.image} style={{ width: 70, height: 70 }} />
                 <View>
-                    <Text>{item.name}</Text>
+                    <Text>{data.item.name}</Text>
                 </View>
                 <View>
-                    <Text style={{color:'#3F51B5',fontWeight:'800'}}>{item.totalPrice} $</Text>
+                    <Text style={{ color: '#3F51B5', fontWeight: '800' }}>{data.item.totalPrice} $</Text>
                 </View>
-                <TouchableOpacity  onPress={()=>decrementItemQuantity(item)}>
+                <TouchableOpacity onPress={() => decrementItemQuantity(data.item)}>
                     <Text><Entypo name="minus" size={20} color="black" /></Text>
                 </TouchableOpacity>
 
-                <Text style={{fontWeight:'800'}}>{item.quantity}</Text>
+                <Text style={{ fontWeight: '800' }}>{data.item.quantity}</Text>
 
-                <TouchableOpacity onPress={()=>incrementItemQuantity(item)}>
-               <Text><Entypo name="plus" size={20} color="black" /></Text>
+                <TouchableOpacity onPress={() => incrementItemQuantity(data.item)}>
+                    <Text><Entypo name="plus" size={20} color="black" /></Text>
                 </TouchableOpacity>
             </View>
         )
     }
-  return (
-    <SafeAreaView style={styles.container}> 
-      <View>
-        <Text>shoping Cart</Text>
-      </View>
-      <FlatList
-      data={CartItems}
-      renderItem={renderItem}
-      />
-      <View>
-        <TotalPayment/>
-      </View>
-    </SafeAreaView>
-  )
+    return (
+        <SafeAreaView style={styles.container}>
+            <View>
+                <Text>shoping Cart</Text>
+            </View>
+
+            {/* Swipe list */}
+            <SwipeListView
+                data={CartItems}
+                renderItem={
+                    (data, rowMap) => (
+                        <RenderItem data={data} />
+                        
+                    )
+                }
+                renderHiddenItem={
+                    (data, rowMap) => (
+                        <View style={{ width: "100%", height: 100}}>
+                            <TouchableOpacity
+                                style={{justifyContent:'flex-end',marginTop:25,backgroundColor: '#6B50F6',  padding: 20,marginVertical: 12,borderRadius: 12,height:'85%'
+                                ,marginHorizontal: 18,}}
+                                onPress={()=>removeItemfromCart(data.item)}
+                            >
+                                <Image style={{marginLeft:'86%',width:40,height:40,paddingTop:30}}
+                                    source={require('../../assets/icons/Icontrash.png')}
+                                />
+                            </TouchableOpacity>
+                        </View>
+                    )
+                }
+                contentContainerStyle={{ rowGap: 10 }}
+                style={styles.menuList}
+                // leftOpenValue={40}
+                rightOpenValue={-70}
+            />
+            
+            <View>
+                <TotalPayment />
+            </View>
+        </SafeAreaView>
+    )
 }
 const styles = StyleSheet.create({
-    itemCart:{
-        flexDirection:'row',
-        padding:10,
-        marginVertical:12,
-        marginHorizontal:18,
-        justifyContent:'space-between',
-        alignItems:'center',
-        backgroundColor:'#BDBDBD',
-        borderRadius:12
+    itemCart: {
+        flexDirection: 'row',
+        padding: 10,
+        marginVertical: 12,
+        marginHorizontal: 18,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        borderRadius: 12,
+        backgroundColor:'white'
     },
-    container:{
-        flex:1
+    container: {
+        flex: 1
     },
-    totalPayment:{
-        backgroundColor:'#1976D2',
-        marginVertical:12,
-        marginHorizontal:16,
-        borderRadius:26,
-       
+    totalPayment: {
+        backgroundColor: '#6B50F6',
+        marginVertical: 12,
+        marginHorizontal: 16,
+        borderRadius: 26,
+
     },
-    TextInvoice:{
-        fontSize:15,
-        fontWeight:'800',
-        color:'white'
+    TextInvoice: {
+        fontSize: 15,
+        fontWeight: '800',
+        color: 'white'
     },
-    detailInvoid:{
-        flexDirection:'row',
-        padding:7,
-        justifyContent:'space-between'
+    detailInvoid: {
+        flexDirection: 'row',
+        padding: 7,
+        justifyContent: 'space-between'
     },
-    order:{
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'white',
-        marginVertical:20,
-        marginHorizontal:30,
-        height:48,
-        borderRadius:12
+    order: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white',
+        marginVertical: 20,
+        marginHorizontal: 30,
+        height: 48,
+        borderRadius: 12
     },
-    placeOrder:{
-        color:'#1976D2',
-        fontSize:20,
-        fontWeight:'900'
+    placeOrder: {
+        color: '#1976D2',
+        fontSize: 20,
+        fontWeight: '900'
     }
-   
+
 })

@@ -65,7 +65,7 @@ export default function Navigator() {
             tabBarIcon: ({ color }) => <FontAwesome name='user' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="Cart" component={TestSwipeListView}
+        <Tab.Screen name="Cart" component={CartOrder}
           options={{
             tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,
           }}

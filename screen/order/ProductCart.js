@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView,Image, Pressable,StyleSheet} from 'react-native';
+import { View, Text, SafeAreaView,Image,StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import { FlatList } from 'react-native';
 import { ListData } from '../home/ListData';
@@ -9,7 +9,7 @@ export default function ProductCart({ navigation }) {
     const dispatch = useDispatch();
 
     const addedItems = useSelector((state) => state.cart.cart);
-    console.log('âddd=>', addedItems)
+    // console.log('âddd=>', addedItems)
     const addToCart = item => {
         dispatch(addItem(item));
     };
@@ -18,12 +18,12 @@ export default function ProductCart({ navigation }) {
           <SafeAreaView style={styles.containerCart}>
             <Image source={item.image} style={{ width: 70, height: 70 }} />
             <View>
-              <Text> {item.name}</Text>
-              <Text>{item.price} $</Text>
+              <Text style={styles.name}> {item.name}</Text>
+              <Text style={styles.price}>{item.price} $</Text>
             </View>
-            <Pressable onPress={() => addToCart(item)}>
-              <Text style={{ borderWidth: 1, borderRadius: 6 }}>Add cart</Text>
-            </Pressable>
+            <TouchableOpacity onPress={() => addToCart(item)}>
+              <Text style={{ borderWidth: 1, borderRadius: 6,color:'#6B50F6',fontWeight:'800'}}>Add cart</Text>
+            </TouchableOpacity>
           </SafeAreaView>
         );
       }
@@ -45,9 +45,21 @@ const styles = StyleSheet.create({
         padding:10,
         marginHorizontal:18,
         marginVertical:12,
+        backgroundColor:'white',
+        justifyContent:'space-between',
+        alignItems:'center',
+        borderRadius:12
     },
     container:{
         flexDirection:'row'
+    },
+    name:{
+      fontSize:18,
+      fontWeight:'700'
+    },
+    price:{
+      color:"#6B50F6",
+      fontWeight:'900'
     }
 
 })
