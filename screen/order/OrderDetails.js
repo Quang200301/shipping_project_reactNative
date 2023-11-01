@@ -13,7 +13,6 @@ export default function OrderDetail() {
         console.log('ListData is undefined or not yet loaded.');
     }
     const [DataOrders, setDataorder] = useState(newData);
-
     const TotalPayment = () => (
         <View style={styles.totalPayment}>
             <View style={styles.detailInvoid}>
@@ -312,9 +311,6 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
     }
-
-
-
 });
 
 const generateBoxShadowStyle = (
