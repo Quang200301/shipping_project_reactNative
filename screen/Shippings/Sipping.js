@@ -7,48 +7,7 @@ import {
   Image,
   Button,
 } from "react-native";
-// import { Button } from "@rneui/themed";
-const TotalPayment = () => (
-  <View style={styles.totalPayment}>
-    <View style={styles.detailInvoid}>
-      <Text style={styles.TextInvoice}> Sub - Total</Text>
-      <Text style={styles.TextInvoice}> 30 $</Text>
-    </View>
-
-    <View style={styles.detailInvoid}>
-      <Text style={styles.TextInvoice}> Delivery Charge</Text>
-      <Text style={styles.TextInvoice}> 10 $</Text>
-    </View>
-
-    <View style={styles.detailInvoid}>
-      <Text style={styles.TextInvoice}> Discount</Text>
-      <Text style={styles.TextInvoice}> 20 $</Text>
-    </View>
-    <View style={[styles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
-      <Text style={[styles.TextInvoice, { fontSize: 18 }]}> Total</Text>
-      <Text style={[styles.TextInvoice, { fontSize: 18 }]}>100 $</Text>
-    </View>
-    <View style={{ width: "100%", height: "40%" }}>
-      <Button
-        title="Place my Order"
-        containerStyle={{
-          width: "93%",
-          height: "70%",
-          alignSelf: "center",
-          elevation: 4,
-          marginTop: 50,
-        }}
-        buttonStyle={{
-          height: "100%",
-          backgroundColor: "#FEFEFF",
-          borderRadius: 15,
-        }}
-        titleStyle={{ color: "#6B50F6", fontSize: 14 }}
-      />
-    </View>
-  </View>
-);
-export default function Voucher() {
+export default function shipping() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -64,10 +23,9 @@ export default function Voucher() {
             style={[styles.image1]}
           />
           <View>
-            <Text style={styles.textTile}>Confirm Order</Text>
+            <Text style={styles.textTile}>Shipping</Text>
           </View>
         </View>
-
         <View
           style={[
             styles.content,
@@ -82,8 +40,7 @@ export default function Voucher() {
           <View style={styles.itemframe}>
             <View style={styles.backgroundAd}>
               <View style={styles.actionEdit}>
-                <Text style={styles.delivers}>Deliver To</Text>
-                <Text style={styles.deliver}>Edit</Text>
+                <Text style={styles.delivers}>Order Location</Text>
               </View>
 
               <View style={styles.location}>
@@ -94,26 +51,27 @@ export default function Voucher() {
                 </View>
 
                 <Text style={{ width: "80%", fontSize: 15, color: "#22242E" }}>
-                  4517 Washington Ave. Manchester, Kentucky 39495
+                8502 Preston Rd. Inglewood,{"\n"} Maine 98380
+
                 </Text>
               </View>
             </View>
-            <View style={styles.backgroundAd}>
+            <View style={[styles.backgroundAd, {height:141}]}>
               <View style={styles.actionEdit}>
-                <Text style={styles.delivers}>Payment Method</Text>
-                <Text style={styles.deliver}>Edit</Text>
+                <Text style={styles.delivers}>Deliver To</Text>
               </View>
 
-              <View style={styles.locations}>
-                <View style={{ width: "20%" }}>
-                  <Image
-                    source={require("../../assets/images/paypal.png")}
-                  />
-                </View>
-                <Text style={{ width: "80%", fontSize: 15, marginLeft:180,}}>
-                 123456789012****
-                </Text>
+             <View style={styles.locations}>
+              <View style={{ width: "20%" }}>
+                <Image source={require("../../assets/images/locationIcon.png")} />
               </View>
+              <View style={{ width: "80%" }}>
+                <Text style={{ fontSize: 15, color: "#22242E" }}>
+                  4517 Washington Ave. Manchester, {"\n"} Kentucky 39495
+                </Text>
+                <Text style={{ fontSize: 15, color: "#6B50F6" }}>Set location</Text>
+              </View>
+            </View>
             </View>
           </View>
         </View>
@@ -123,7 +81,7 @@ export default function Voucher() {
             { height: "32%", width: "100%" },
           ]}
         >
-          <TotalPayment />
+          {/* <TotalPayment /> */}
         </View>
       </View>
     </SafeAreaView>
@@ -137,6 +95,7 @@ const styles = StyleSheet.create({
   },
   textTile: {
     fontSize: 25,
+    marginLeft:10,
   },
   locations:{
     flexDirection:'row',
@@ -154,11 +113,11 @@ const styles = StyleSheet.create({
   backgroundAd: {
     rowGap: 15,
     justifyContent: "center",
-    height: 108,
+    height: 120,
     elevation: 5,
     backgroundColor: "#fff",
     borderRadius: 22,
-    padding: 10,
+    padding: 32,
   },
   deliver: {
     opacity: 0.5,
