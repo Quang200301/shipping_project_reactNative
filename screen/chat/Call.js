@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, SafeAreaView, ImageBackground, View, TouchableOpacity, Text, Image } from "react-native";
@@ -110,3 +111,5 @@ const styles = StyleSheet.create({
         height: "100%",
     }
 })
+=======
+>>>>>>> 3e2f8c09f51dff1dbe165120777579b411169918
