@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, SafeAreaView, ImageBackground, View, TouchableOpacity, Text, Image } from "react-native";
 
-const ConfirmOrder = () => {
+const ConfirmOrder = ({navigation}) => {
     return (
         <SafeAreaView>
             <View style={styles.container}>

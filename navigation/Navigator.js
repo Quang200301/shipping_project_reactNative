@@ -20,6 +20,8 @@ import TestSwipeListView from "../screen/order/OrderDetails";
 import ShoppingCartPage from '../screen/home/ShoppingCartPage';
 import ProductCart from '../screen/order/ProductCart';
 import CartOrder from '../screen/order/CartOrder';
+import Checkout from '../screen/Payments/Payment';
+import ConfirmOrder from '../screen/Confirmorder/confirm'
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigator() {
@@ -89,7 +91,8 @@ export default function Navigator() {
         <Stack.Screen name="call" component={Call} />
         <Stack.Screen name='searchs' component={SearchPage}/>
         <Stack.Screen name='detailpage' component={DetailPage}/>
-        <Stack.Screen name='Test' component={DetailPage}/>
+        <Stack.Screen name='confirmOrder' component={ConfirmOrder}/>
+        <Stack.Screen name='checkout' component={Checkout}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

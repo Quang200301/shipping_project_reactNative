@@ -17,7 +17,7 @@ const dataChatContents = [
         meToThem: "Okay I'm waiting 👍"
     }
 ];
-export default function ChatDetail({navigation}) {
+export default function ChatDetail({ navigation }) {
     const [dataChat, setDataChat] = useState();
     const [dataInputChat, setDataInputChat] = useState('');
     const [showEmptyMessageAlert, setShowEmptyMessageAlert] = useState(false);
@@ -55,7 +55,7 @@ export default function ChatDetail({navigation}) {
             <SafeAreaView>
                 <View style={styles.container}>
                     <TouchableOpacity
-                        onPress={()=>navigation.goBack()}
+                        onPress={() => navigation.goBack()}
                     >
                         <Image source={require('../../assets/icons/IconBack.png')} />
                     </TouchableOpacity>
@@ -73,7 +73,7 @@ export default function ChatDetail({navigation}) {
                             </View>
                         </View>
                         <TouchableOpacity
-                            onPress={()=>navigation.navigate('callRinging')}
+                            onPress={() => navigation.navigate('callRinging')}
                         >
                             <Image source={require('../../assets/icons/CallLogo.png')} />
                         </TouchableOpacity>
@@ -85,7 +85,7 @@ export default function ChatDetail({navigation}) {
                     >
                         {
                             dataChat ?
-                                dataChat.map((mes,index) => (
+                                dataChat.map((mes, index) => (
                                     mes.theyToMe ?
                                         <Text key={`theyToMe_${index}`} style={styles.chatContentThey}>{mes.theyToMe}</Text>
                                         :
@@ -230,8 +230,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         alignItems: 'center',
-        borderRadius:24,
-        opacity:0.9,
+        borderRadius: 24,
+        opacity: 0.9,
     },
     alertText: {
         color: 'white', // Màu chữ trắng

@@ -5,7 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Image,
-  Button,
+  Button, TouchableOpacity
 } from "react-native";
 // import { Button } from "@rneui/themed";
 const TotalPayment = () => (
@@ -48,7 +48,7 @@ const TotalPayment = () => (
     </View>
   </View>
 );
-export default function Voucher() {
+export default function ConfirmOrder({ navigation }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -56,13 +56,15 @@ export default function Voucher() {
         <View
           style={[
             styles.header,
-            { height: "10%", width: "100%",  },
+            { height: "10%", width: "100%", },
           ]}
         >
-          <Image
-            source={require("../../assets/images/combackicon.png")}
-            style={[styles.image1]}
-          />
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Image
+              source={require("../../assets/images/combackicon.png")}
+            />
+          </TouchableOpacity>
+
           <View>
             <Text style={styles.textTile}>Confirm Order</Text>
           </View>
@@ -101,7 +103,9 @@ export default function Voucher() {
             <View style={styles.backgroundAd}>
               <View style={styles.actionEdit}>
                 <Text style={styles.delivers}>Payment Method</Text>
-                <Text style={styles.deliver}>Edit</Text>
+                <TouchableOpacity>
+                  <Text style={styles.deliver}>Edit</ Text>
+                </TouchableOpacity>
               </View>
 
               <View style={styles.locations}>
@@ -110,8 +114,8 @@ export default function Voucher() {
                     source={require("../../assets/images/paypal.png")}
                   />
                 </View>
-                <Text style={{ width: "80%", fontSize: 15, marginLeft:180,}}>
-                 123456789012****
+                <Text style={{ width: "80%", fontSize: 15, marginLeft: 180, }}>
+                  123456789012****
                 </Text>
               </View>
             </View>
@@ -138,14 +142,14 @@ const styles = StyleSheet.create({
   textTile: {
     fontSize: 25,
   },
-  locations:{
-    flexDirection:'row',
-    },
+  locations: {
+    flexDirection: 'row',
+  },
   itemframe: {
     width: "100%",
     // backgroundColor: "yellow",
     height: "100%",
-    rowGap:20,
+    rowGap: 20,
   },
   actionEdit: {
     flexDirection: "row",
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
   deliver: {
     opacity: 0.5,
     fontSize: 14,
-    color:"#6B50F6",
+    color: "#6B50F6",
   },
   location: {
     flexDirection: "row",

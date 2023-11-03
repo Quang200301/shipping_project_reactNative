@@ -8,7 +8,7 @@ import { removeItem } from '../../components/features/counterSlice';
 import { selectTotalAllPrice, selectTotalAllQuantity } from '../../components/features/cartSelectors';
 import { SwipeListView } from "react-native-swipe-list-view";
 
-export default function CartOrder() {
+export default function CartOrder({navigation}) {
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
     const totalQuantity = useSelector(selectTotalAllQuantity);
@@ -42,7 +42,7 @@ export default function CartOrder() {
                 <Text style={[styles.TextInvoice, { fontSize: 18 }]}> Total</Text>
                 <Text style={[styles.TextInvoice, { fontSize: 18 }]}> {totalPrice} $</Text>
             </View>
-            <TouchableOpacity style={styles.order}>
+            <TouchableOpacity style={styles.order} onPress={()=>navigation.navigate('confirmOrder')}>
                 <Text style={styles.placeOrder}>Place My Order</Text>
             </TouchableOpacity>
 

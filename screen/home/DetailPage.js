@@ -23,9 +23,10 @@ const DetailPage=({navigation,route})=>{
     )
 }
 export default DetailPage;
+
+
 const styles = StyleSheet.create({
     imagesDetail:{
-     
         backgroundColor:'green',
         alignItems:"center",
         width:250,
@@ -34,7 +35,5 @@ const styles = StyleSheet.create({
         marginTop:250,
         alignSelf:"center",
         borderTopLeftRadius:56,
-        
-        
     }
 })
