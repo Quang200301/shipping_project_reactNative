@@ -2,6 +2,7 @@
 import { View, Text, StyleSheet, TextInput, Image, Pressable, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import CardItem from "./CardItem";
+import { AntDesign } from '@expo/vector-icons';
 import Menu from "./Menu";
 import ProductCart from "../order/ProductCart";
 const Home = ({ navigation }) => {
@@ -14,7 +15,10 @@ const Home = ({ navigation }) => {
                     <Text style={{ fontSize: 40, fontWeight: "bold" }}>
                         Find Your {'\n'}Favorite Food
                     </Text>
-                    <FontAwesome style={{ marginTop: 30 }} name={"bell-o"} size={28} color="red" />
+                   
+                        <FontAwesome style={{ marginTop: 30}} name={"bell-o"} size={28} color="#6b50f6"/>
+                        
+                    
                 </View>
 
                 <Pressable style={styles.Searchtext}>
@@ -31,7 +35,7 @@ const Home = ({ navigation }) => {
                         flex: 1,
                         marginLeft: 25
                     }}>
-                        <FontAwesome name="search" size={28} color={"#6b50f6"} />
+                        <FontAwesome name="search" size={28} color={"#6b50f6"}/>
                         <TextInput style={{ paddingLeft: 8, fontSize: 16, color: '#808080' }}
                             placeholder="What do you want to order ?" clearButtonMode="always"
                             
@@ -43,7 +47,7 @@ const Home = ({ navigation }) => {
                     <Pressable
                         onPress={() => {navigation.navigate("searchs")}}
                         >
-                        <Image source={require("../../assets/icons/FilterSearch.png")} style={{ width: 55, height: 55, marginVertical: 20 }} />
+                        <AntDesign name="menu-unfold" size={45} color="#6b50f6" style={{marginTop:24,backgroundColor:'#FAFAFA',borderRadius:8}}/>
                     </Pressable>
                 </Pressable>
                 <View style={{ flexDirection: "row", width: "95%",left:10, backgroundColor: "#6B50F6", alignItems: "center", borderRadius: 8, gap: 20, alignSelf: "center", justifyContent: "center" }}>

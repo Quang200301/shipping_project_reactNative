@@ -20,6 +20,7 @@ import TestSwipeListView from "../screen/order/OrderDetails";
 import ShoppingCartPage from '../screen/home/ShoppingCartPage';
 import ProductCart from '../screen/order/ProductCart';
 import CartOrder from '../screen/order/CartOrder';
+import DetailProduct from '../screen/home/DetailProduct';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigator() {
@@ -66,10 +67,14 @@ export default function Navigator() {
           }}
         />
         <Tab.Screen name="Cart" component={CartOrder}
+        
           options={{
             tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,
+          
           }}
+         
         />
+        
         <Tab.Screen name="Chat" component={Message}
           options={{
             tabBarIcon: ({ color }) => <FontAwesome name='comment' size={30} color={color} />
@@ -90,6 +95,7 @@ export default function Navigator() {
         <Stack.Screen name='searchs' component={SearchPage}/>
         <Stack.Screen name='detailpage' component={DetailPage}/>
         <Stack.Screen name='Test' component={DetailPage}/>
+        <Stack.Screen name='detailpro' component={DetailProduct}/>
       </Stack.Navigator>
     </NavigationContainer>
   )

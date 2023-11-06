@@ -3,6 +3,7 @@ import { Text, FlatList, Pressable, Image, ScrollView, StyleSheet, View ,TextInp
 import { ListData } from "./ListData";
 import Header from "./Header";
 import ViewNeares from "./ViewNeares";
+import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 const ViewItem = () => {
@@ -30,7 +31,7 @@ const ViewItem = () => {
                 <Text style={{ fontSize: 40, fontWeight: "bold" }}>
                     Find Your {'\n'}Favorite Food
                 </Text>
-                <FontAwesome style={{ marginTop: 30 }} name={"bell-o"} size={28} color="red" />
+                <FontAwesome style={{ marginTop: 30}} name={"bell-o"} size={28} color="#6b50f6"/>
             </View>
 
             <Pressable style={styles.Searchtext}>
@@ -61,7 +62,7 @@ const ViewItem = () => {
                 <Pressable
                     onPress={() => {navigation.navigate("searchs")}}
                 >
-                    <Image source={require("../../assets/icons/FilterSearch.png")} style={{ width: 55, height: 55, marginVertical: 20 }} />
+                    <AntDesign name="menu-unfold" size={45} color="#6b50f6" style={{marginTop:24,backgroundColor:'#FAFAFA',borderRadius:8,marginRight:10}}/>
                 </Pressable>
 
 

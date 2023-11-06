@@ -1,7 +1,9 @@
 import React from "react";
-import { Text, FlatList, Pressable, Image, StyleSheet, View } from "react-native";
+import { Text, FlatList, Image, StyleSheet, View, TouchableOpacity } from "react-native";
 import {  NearestData } from "./ListData";
+import { useNavigation } from "@react-navigation/native";
 const ViewNeares = () => {
+    const navigation=useNavigation();
     return (
     
         
@@ -14,11 +16,12 @@ const ViewNeares = () => {
                             style={styles.flatListContainer}
                             data={NearestData}
                             renderItem={({item})=>
-                            <Pressable
+                            <TouchableOpacity
+                                    onPress={()=>navigation.navigate('detailpro',{item:item})}
                                     style={{
                                         backgroundColor: "#FFFFFF",
                                         shadowColor: "#000",
-                                        shadowOffset: { width: 0, height: 4 },
+                                        shadowOffsset: { width: 0, height: 4 },
                                         shadowOpacity: 0.1,
                                         shadowRadius: 7,
                                         borderRadius: 16,
@@ -32,7 +35,7 @@ const ViewNeares = () => {
 
                                     <Image source={item.image} style={{ width: 150, height: 150, resizeMode: "center" }} />
                                     <Text>{item.name}</Text>
-                                </Pressable>
+                                </TouchableOpacity>
                         }
                         numColumns={2}
                         columnWrapperStyle={{

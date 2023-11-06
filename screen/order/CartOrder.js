@@ -7,12 +7,15 @@ import { decrementQuantity } from '../../components/features/counterSlice';
 import { removeItem } from '../../components/features/counterSlice';
 import { selectTotalAllPrice, selectTotalAllQuantity } from '../../components/features/cartSelectors';
 import { SwipeListView } from "react-native-swipe-list-view";
+import { useNavigation } from '@react-navigation/native';
 
 export default function CartOrder() {
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
     const totalQuantity = useSelector(selectTotalAllQuantity);
     const totalPrice = useSelector(selectTotalAllPrice);
+    const Discount=20;
+    const subTotal= totalPrice-Discount;
     const incrementItemQuantity = (item) => {
         dispatch(incrementQuantity(item));
     };
@@ -26,7 +29,7 @@ export default function CartOrder() {
         <View style={styles.totalPayment}>
             <View style={styles.detailInvoid}>
                 <Text style={styles.TextInvoice}> Sub - Total</Text>
-                <Text style={styles.TextInvoice}>100 $</Text>
+                <Text style={styles.TextInvoice}>{subTotal} $</Text>
             </View>
 
             <View style={styles.detailInvoid}>
@@ -73,7 +76,7 @@ export default function CartOrder() {
     }
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{marginVertical:20,marginHorizontal:18}}>
+            <View style={{marginVertical:20,marginHorizontal:18}}>       
                 <Text style={{fontSize:25,fontWeight:'800'}}>Order details</Text>
             </View>
 
