@@ -1,30 +1,21 @@
+
 import { View, Text, StyleSheet, SafeAreaView, TextInput, ImageBackground, TouchableOpacity,ScrollView } from 'react-native';
-import React,{useState} from 'react'
+import React from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-export default function SignUp({navigation}) {
-    const [userName, setUserName] = useState();
-    const [email, setEmail] = useState();
-    const [PassWord, setPassWord] = useState();
+import { FontAwesome5 } from '@expo/vector-icons';
+export default function SignIn(){
+    const [text, onChangeText] = React.useState('Useless Text');
     return (
         <ScrollView style={styles.container}>
             <ImageBackground source={require('../../assets/Signup1.png')} resizeMode="contain" style={styles.image} />
-            <Text style={{ textAlign: 'center', paddingTop: 30, fontSize: 25, fontWeight: '800' }}>Sign Up For Free</Text>
+            <Text style={{ textAlign: 'center', paddingTop: 30, fontSize: 25, fontWeight: '800' }}>Login To Your Account</Text>
             <View style={{ paddingTop: 30 }}>
-                <View style={styles.inputContainer}>
-                    <AntDesign name="user" size={24} color="#6B50F6" style={styles.icon} />
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setUserName}
-                        placeholder="userName"
-
-                    />
-                </View>
                 <View style={styles.inputContainer}>
                     <AntDesign name="mail" size={24} color="#6B50F6" style={styles.icon} />
                     <TextInput
                         style={styles.input}
-                        onChangeText={setEmail}
+                        onChangeText={onChangeText}
                         placeholder="Email"
 
                     />
@@ -34,25 +25,30 @@ export default function SignUp({navigation}) {
                     <AntDesign name="lock" size={24} color="#6B50F6" style={styles.icon} />
                     <TextInput
                         style={styles.input}
-                        onChangeText={setPassWord}
+                        onChangeText={onChangeText}
                         placeholder="PassWord"
                     />
                 </View>
-                <View style={{flexDirection:'row', marginHorizontal: 18,gap:5}}>
-                    <Entypo name="chevron-with-circle-down" size={19} color="#6B50F6" />
-                    <Text>Keep Me Signed In</Text>
+                <View style={{flex:1,alignItems:'center'}}>
+                    <Text style={{fontWeight:600}}>Or Continue With</Text>
                 </View>
-                <View  style={{flexDirection:'row', marginHorizontal: 18,gap:5,paddingTop:8}}>
-                    <Entypo name="chevron-with-circle-down" size={19} color="#6B50F6" />      
-                    <Text>Email Me About Special Pricing </Text>
+                <View  style={{flexDirection:'row', marginHorizontal: 18,paddingTop:8,justifyContent:'space-between',marginVertical:12,marginHorizontal:18,padding:10}}>     
+                   <TouchableOpacity style={{flexDirection:'row',gap:8,alignItems:'center',backgroundColor:'#F4F4F4',height:50,width:140,padding:10,justifyContent:'center',borderRadius:12}}>
+                        <Entypo name="facebook-with-circle" size={24} color="#3C5A9A" />
+                        <Text>Facebook</Text>
+                   </TouchableOpacity>
+                   <TouchableOpacity style={{flexDirection:'row',gap:8,alignItems:'center',backgroundColor:'#F4F4F4',height:50,width:140,padding:10,justifyContent:'center',borderRadius:12}}>
+                        <FontAwesome5 name="google" size={24} color="#3C5A9A" />
+                        <Text>Google</Text>
+                    </TouchableOpacity>
                 </View>
+                <Text style={{ marginLeft:100,paddingTop:8,color:'#6B50F6',borderBottomWidth:1,borderBottomColor: '#6B50F6',width:150}} onPress={()=>navigation.navigate('signin')}>Forgot Your Password?</Text>
                 <TouchableOpacity style={styles.LoginButton}>
-                    <Text  style={{fontSize:20,fontWeight:'400'}}>Create Account</Text>
+                    <Text style={{fontSize:20,fontWeight:'400'}}>Login</Text>
                 </TouchableOpacity >
-                <Text style={{ marginLeft:100,paddingTop:8,color:'#6B50F6',borderBottomWidth:1,borderBottomColor: '#6B50F6',width:170}} onPress={()=>navigation.navigate('signin')}>already have an account?</Text>
             </View>
         </ScrollView>
-    )
+    );
 };
 const styles = StyleSheet.create({
     input: {
@@ -60,6 +56,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor:'#FFFFFF'
     },
     image: {
         width: 200,
@@ -83,7 +80,7 @@ const styles = StyleSheet.create({
     LoginButton:{
         backgroundColor:'#6B50F6',
         height:60,
-        width:190,
+        width:160,
         justifyContent:'center',
         alignItems:'center',
         marginLeft:100,
