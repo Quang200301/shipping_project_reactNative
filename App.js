@@ -7,6 +7,7 @@ import Notification from "./screen/Notifications/Notification";
 import Payment from "./screen/Payments/Payment"
 import Confirmorder from './screen/Confirmorder/confirm'
 import Shipping from './screen/Shippings/Sipping'
+import Profile from './screen/Profiles/Profile'
 const App = () => {
   return (
     <SafeAreaView>
@@ -15,7 +16,8 @@ const App = () => {
       {/* <Notification/> */}
       {/* <Payment/> */}
       {/* <Confirmorder/> */}
-       <Shipping/>
+      <Profile/>
+       {/* <Shipping/> */}
     </SafeAreaView>
   );
 };
