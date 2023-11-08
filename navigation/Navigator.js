@@ -28,9 +28,8 @@ export default function Navigator() {
   const BottomTab = () => {
     return (
       <Tab.Navigator
-     
+
         screenOptions={({ route }) => ({
-         
           headerShown: false,
           tabBarLabel: ({ focused, color }) => {
             if (focused) {
@@ -51,12 +50,11 @@ export default function Navigator() {
             }
             return <FontAwesome name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'red', 
-          tabBarInactiveTintColor: 'blue', 
+          tabBarActiveTintColor: 'red',
+          tabBarInactiveTintColor: 'blue',
         })}
-        
       >
-        <Tab.Screen  name="Home" component={Home}
+        <Tab.Screen name="Home" component={Home}
           options={{
             tabBarIcon: ({ color }) => <FontAwesome name='home' size={30} color={color} />,
           }}
@@ -89,10 +87,10 @@ export default function Navigator() {
         <Stack.Screen name="chatDetail" component={ChatDetail} />
         <Stack.Screen name="callRinging" component={CallRinging} />
         <Stack.Screen name="call" component={Call} />
-        <Stack.Screen name='searchs' component={SearchPage}/>
-        <Stack.Screen name='detailpage' component={DetailPage}/>
-        <Stack.Screen name='confirmOrder' component={ConfirmOrder}/>
-        <Stack.Screen name='checkout' component={Checkout}/>
+        <Stack.Screen name='searchs' component={SearchPage} />
+        <Stack.Screen name='detailpage' component={DetailPage} />
+        <Stack.Screen name='confirmOrder' component={ConfirmOrder} />
+        <Stack.Screen name='checkout' component={Checkout} />
       </Stack.Navigator>
     </NavigationContainer>
   )
