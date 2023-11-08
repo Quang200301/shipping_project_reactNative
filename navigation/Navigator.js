@@ -21,6 +21,7 @@ import ShoppingCartPage from '../screen/home/ShoppingCartPage';
 import ProductCart from '../screen/order/ProductCart';
 import CartOrder from '../screen/order/CartOrder';
 import DetailProduct from '../screen/home/DetailProduct';
+import SignUp from '../components/Login/SignUp';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigator() {
@@ -86,6 +87,7 @@ export default function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='signup' component={SignUp}/>
         <Stack.Screen name='home' component={BottomTab} />
         <Stack.Screen name="allview" component={ViewItem} />
         <Stack.Screen name="message" component={Message} />

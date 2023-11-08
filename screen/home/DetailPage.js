@@ -1,40 +1,80 @@
-import {View,Text,StyleSheet,Pressable,Image} from "react-native";
-import {FontAwesome} from "@expo/vector-icons";
+import { View, Text, StyleSheet, Pressable, Image, TouchableOpacity } from "react-native";
+import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import ParallaxScrollView from 'react-native-parallax-scroll-view';
+import CardItem from './CardItem';
+import Testimonials from './Testimonials';
+const DetailPage = ({ navigation, route }) => {
+    const { item } = route.params;
+    return (
+        <>
+            <View style={{ flex: 1 }}>
+                <ParallaxScrollView
+                    backgroundColor="grey"
+                    contentBackgroundColor="#EEEEEE"
+                    parallaxHeaderHeight={300}
+                    stickyHeaderIndices={[0]}
+                    renderForeground={() => (
+                        <View style={{ borderRadius: 24 }} >
+                            <Image source={item.image} style={{ width: '100%', height: '100%' }} />
+                        </View>
+                    )}>
+                    <View style={{ borderRadius: 22 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 22, paddingTop: 18 }}>
+                            <Text style={{ fontSize: 17, backgroundColor: '#B2DFDB', width: 80, height: 35, textAlign: 'center', paddingTop: 4, borderRadius: 12, color: '#6B50F6' }}>Populer</Text>
+                            <View style={{ flexDirection: 'row', gap: 34 }}>
+                                <FontAwesome5 name="map-marker-alt" size={24} color="#448AFF" />
+                                <AntDesign name="heart" size={24} color="red" />
+                            </View>
+                        </View>  
+                        <Text style={{ fontSize: 30, fontWeight: '800', marginHorizontal: 22, paddingTop: 18 }}>{item.name}</Text>
+                        <View style={{ flexDirection: 'row', paddingTop: 10, marginHorizontal: 22, gap: 8, paddingTop: 18 }}>
+                            <FontAwesome5 name="map-marker-alt" size={24} color="#448AFF" />
+                            <Text>{item.km} Km</Text>
+                            <View style={{ flexDirection: 'row', marginLeft: 40, gap: 8 }}>
+                                <FontAwesome name="star-half-o" size={24} color="#2ECF80" />
+                                <Text>{item.rating} Rating</Text>
+                            </View>
 
-const DetailPage=({navigation,route})=>{
-    const {item}=route.params;
-    console.log(item);
-    return(
-        <View style={{ backgroundColor:item.color,flex:1}}>
-            <Pressable style={{marginHorizontal:20,marginTop:5}}  onPress={()=>navigation.goBack()}>
-                <FontAwesome  name={"arrow-circle-left"} size={38} color="white" style={{marginVertical:18}}/>
-            </Pressable>
-            <View style={styles.imagesDetail}>
-                <Image source={item.image}
-                 style={{width:"100%",height:"100%",resizeMode:"contain"}}
-                />
-                <View style={{flexDirection:'row',gap:4}}>
-                    <Text  style={{fontSize:20,fontWeight:400,color:'white'}}>{item.name}</Text>
-                    <Text style={{fontSize:20,fontWeight:800,color:"blue"}}>|</Text>
-                    <Text style={{fontSize:20,fontWeight:400,color:'white'}}>{item.time}</Text>
-                </View>
+                        </View>
+                        <Text style={{ fontSize: 17, fontWeight: '400', marginHorizontal: 22, paddingTop: 18 }}>{item.description}</Text>
+                        <View>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginHorizontal: 22, paddingTop: 18 }}>
+                                <Text style={{ fontWeight: '700', fontSize: 18 }}>Populer Menu</Text>
+                                <Text onPress={() => navigation.navigate("allview")} style={{ fontWeight: '700', fontSize: 18, color: '#00FF66' }}>View All</Text>
+                            </View>
+                            <View>
+                                <CardItem />
+                            </View>
+                            <Text style={{ fontWeight: '700', fontSize: 18, marginHorizontal: 22, paddingTop: 8 }}>Testimonials</Text>
+                            <View>
+                                <Testimonials />
+                            </View>
+                        </View>
+                    </View>
+
+                </ParallaxScrollView>
+
             </View>
-        </View>
+            <TouchableOpacity style={styles.addTochart}>
+                <Text style={{color:'white',fontSize:14,fontWeight:'600'}}>Add To Chart</Text>
+            </TouchableOpacity>
+        </>
+
     )
 }
 export default DetailPage;
 const styles = StyleSheet.create({
-    imagesDetail:{
-     
-        backgroundColor:'green',
-        alignItems:"center",
-        width:250,
-        height:250,
-        position:'absolute',
-        marginTop:250,
-        alignSelf:"center",
-        borderTopLeftRadius:56,
-        
-        
+    addTochart: {
+        position: 'absolute',
+        height: 25,
+        backgroundColor: '#6B50F6',
+        width: '90%',
+        marginLeft:20,
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:'179%',
+        borderRadius:15
     }
 })
