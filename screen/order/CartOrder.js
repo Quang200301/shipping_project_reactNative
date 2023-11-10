@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 export default function CartOrder() {
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
-    const totalQuantity = useSelector(selectTotalAllQuantity);
+    const totalQuantity = useSelector(selectTotalAllQuantity); 
     const totalPrice = useSelector(selectTotalAllPrice);
     const Discount=20;
     const subTotal= totalPrice-Discount;
