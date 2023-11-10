@@ -4,7 +4,7 @@ import React from 'react'
 const Post = () => {
   return (
     <View>
-      <Text>Post</Text>
+      <Text style={{fontSize:50}}>Post</Text>
     </View>
   )
 }

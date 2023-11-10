@@ -4,31 +4,28 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
-import Home from '../screen/home';
+import Home from '../screen/HomePage';
 import Post from '../screen/Post';
 import Profile from '../screen/Profile';
+import Detail from '../screen/Detail';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const BottomTab = () => (
     <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home}
-            options={{
-                headerShown: false,
-                title: "This is Home"
-            }} />
-        <Tab.Screen name="Profile" component={Profile} />
-        <Tab.Screen name="Post" component={Post} />
+        <Tab.Screen name="Profile" component={Profile} options={{headerShown:false}}/>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Detail" component={Detail} />
     </Tab.Navigator>
 )
 
+
 const StackNavigator = () => (
     <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={BottomTab} options={{ headerShown: false }} />
-        <Stack.Screen name="Post" component={Post} options={{ headerShown: false }} />
-        <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={BottomTab} options={{ headerShown: false }} />
+        <Stack.Screen name="Post" component={Post} options={{ headerShown: true }} />
+        <Stack.Screen name="Detail" component={Detail} options={{ headerShown: true }} />
     </Stack.Navigator>
 )
 
