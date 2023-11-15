@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import { TouchableOpacity } from 'react-native-web'
 const Home = ({ navigation }) =>
 (
   <View style={{ backgroundImage: `url(https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg)`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100%' }}>
@@ -13,13 +12,7 @@ const Home = ({ navigation }) =>
     </TouchableOpacity>
   </View>
 )
-
-
 export default Home
 
 const styles = StyleSheet.create({})
 
-// <Text style={{ fontSize: 50, padding: 30 }}>Home page</Text>
-//     <TouchableOpacity onPress={() => navigation.navigate('detail')}>
-//       <Text style={{ fontSize: 16, padding: 30, color: 'white', backgroundColor: 'black' }}>Go to Detail</Text>
-//     </TouchableOpacity>
