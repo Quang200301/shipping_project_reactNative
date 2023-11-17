@@ -51,10 +51,92 @@ export default function Profile() {
                 source={require("../../assets/images/voucher1.png")}
                 style={styles.voucher}
               />
-              <Text>You Have 3 Voucher</Text>
+              <Text style={{marginTop:10}}>You Have 3 Voucher</Text>
             </View>
           </View>
           <Text style={styles.favoriteText}>Favorite</Text>
+          <View style={styles.contentcontainer}>
+         
+          <View style={styles.contentcontainer}>
+            <View style={{ flexDirection: "row", gap: 25 }}>
+              <Image
+                source={require("../../assets/images/Menu1.png")}
+                style={styles.voucher}
+              />
+              <View>
+                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
+                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
+                <Text style={styles.menuPrice}>$ 35</Text>
+              </View>
+              <View style={styles.buyAgainButton}>
+                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.contentcontainer}>
+            <View style={{ flexDirection: "row", gap: 25 }}>
+              <Image
+                source={require("../../assets/images/PhotoMenu.png")}
+                style={styles.voucher}
+              />
+              <View>
+                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
+                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
+                <Text style={styles.menuPrice}>$ 35</Text>
+              </View>
+              <View style={styles.buyAgainButton}>
+                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.contentcontainer}>
+            <View style={{ flexDirection: "row", gap: 25 }}>
+              <Image
+                source={require("../../assets/images/PhotoMenu2.png")}
+                style={styles.voucher}
+              />
+              <View>
+                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
+                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
+                <Text style={styles.menuPrice}>$ 35</Text>
+              </View>
+              <View style={styles.buyAgainButton}>
+                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.contentcontainer}>
+            <View style={{ flexDirection: "row", gap: 25 }}>
+              <Image
+                source={require("../../assets/images/PhotoMenu2.png")}
+                style={styles.voucher}
+              />
+              <View>
+                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
+                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
+                <Text style={styles.menuPrice}>$ 35</Text>
+              </View>
+              <View style={styles.buyAgainButton}>
+                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.contentcontainer}>
+            <View style={{ flexDirection: "row", gap: 25 }}>
+              <Image
+                source={require("../../assets/images/PhotoMenu2.png")}
+                style={styles.voucher}
+              />
+              <View>
+                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
+                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
+                <Text style={styles.menuPrice}>$ 35</Text>
+              </View>
+              <View style={styles.buyAgainButton}>
+                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
+              </View>
+            </View>
+          </View>
           <View style={styles.contentcontainer}>
             <View style={{ flexDirection: "row", gap: 25 }}>
               <Image
@@ -74,7 +156,7 @@ export default function Profile() {
           <View style={styles.contentcontainer}>
             <View style={{ flexDirection: "row", gap: 25 }}>
               <Image
-                source={require("../../assets/images/PhotoMenu.png")}
+                source={require("../../assets/images/Menu1.png")}
                 style={styles.voucher}
               />
               <View>
@@ -87,70 +169,8 @@ export default function Profile() {
               </View>
             </View>
           </View>
-          <View style={styles.contentcontainer}>
-            <View style={{ flexDirection: "row", gap: 25 }}>
-              <Image
-                source={require("../../assets/images/PhotoMenu.png")}
-                style={styles.voucher}
-              />
-              <View>
-                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
-                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
-                <Text style={styles.menuPrice}>$ 35</Text>
-              </View>
-              <View style={styles.buyAgainButton}>
-                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
-              </View>
-            </View>
           </View>
-          <View style={styles.contentcontainer}>
-            <View style={{ flexDirection: "row", gap: 25 }}>
-              <Image
-                source={require("../../assets/images/PhotoMenu.png")}
-                style={styles.voucher}
-              />
-              <View>
-                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
-                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
-                <Text style={styles.menuPrice}>$ 35</Text>
-              </View>
-              <View style={styles.buyAgainButton}>
-                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.contentcontainer}>
-            <View style={{ flexDirection: "row", gap: 25 }}>
-              <Image
-                source={require("../../assets/images/PhotoMenu.png")}
-                style={styles.voucher}
-              />
-              <View>
-                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
-                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
-                <Text style={styles.menuPrice}>$ 35</Text>
-              </View>
-              <View style={styles.buyAgainButton}>
-                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
-              </View>
-            </View>
-          </View>
-          <View style={styles.contentcontainer}>
-            <View style={{ flexDirection: "row", gap: 25 }}>
-              <Image
-                source={require("../../assets/images/PhotoMenu.png")}
-                style={styles.voucher}
-              />
-              <View>
-                <Text style={styles.menuTitle}>Spacy fresh crab</Text>
-                <Text style={styles.menuSubtitle}>Waroenk kita</Text>
-                <Text style={styles.menuPrice}>$ 35</Text>
-              </View>
-              <View style={styles.buyAgainButton}>
-                <Text style={styles.buyAgainButtonText}>Buy Again</Text>
-              </View>
-            </View>
-          </View>
+          
           {/* Repeat the above block for other favorite items */}
         </View>
         <View style={{ width: 60 }}></View>
@@ -168,6 +188,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     marginRight: 20,
     marginLeft: 20,
+    backgroundColor:'30A2FF'
   },
   conten2: {
     flexDirection: "row",
@@ -180,14 +201,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     width: 120,
     borderRadius: 20,
+    marginBottom:20,
+    marginTop:20,
   },
   email: {
     fontWeight: "300",
     marginHorizontal: 18,
-    marginBottom: 36,
   },
   favoriteText: {
-    marginLeft: 30,
+    marginLeft: 20,
     fontSize: 45,
   },
   voucher: {
