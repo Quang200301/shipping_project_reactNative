@@ -3,100 +3,38 @@ import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import Home from '../screen/HomePage';
-import Post from '../screen/Post';
-import Detail from '../screen/Detail';
-
+import bottomRoutes from '../navigator/TabBottom';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 
 
-
 const BottomTab = () => {
-    const [isFocus, setIsFocus] = useState(false);
     return (
         <Tab.Navigator
             screenOptions={{
                 headerShown: true,
                 tabBarShowLabel: false,
-                tabBarStyle: {
-                    position: 'absolute',
-                    bottom: 25,
-                    left: 20,
-                    right: 20,
-                    elevation: 0,
-                    backgroundColor: '#ffffff',
-                    paddingHorizontal: 20,
-                    borderRadius: 26,
-                    height: 90,
-                    ...styles.shadow,
-                    borderColor: 'none'
-                }
+                tabBarStyle: { ...styles.tabBarStyle, ...styles.shadow }
             }}
         >
-            <Tab.Screen
-                name="HomeBottom"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={focused ? { ...styles.tabBarDisplayInFocus } : { ...styles.tabBarDisplayUnFocus }}
-                        >
-                            <Image source={require('../assets/icons/icon_bottom_tab/Home.png')} resizeMode='contain' />
-                            <Text style={focused ? { fontSize: 12, color: '#6B50F6', fontWeight: 700 } : { display: 'none' }}>Home</Text>
-                        </View>
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name="ProfileBottom"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={focused ? { ...styles.tabBarDisplayInFocus } : { ...styles.tabBarDisplayUnFocus }}
-                        >
-                            <Image source={require('../assets/icons/icon_bottom_tab/Profile.png')} resizeMode='contain' />
-                            <Text style={focused ? { fontSize: 12, color: '#6B50F6', fontWeight: 700 } : { display: 'none' }}>Profile</Text>
-                        </View>
-                    )
-                }}
-
-            />
-
-            <Tab.Screen
-                name="OrderBottom"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={focused ? { ...styles.tabBarDisplayInFocus } : { ...styles.tabBarDisplayUnFocus }}
-                        >
-                            <Image source={require('../assets/icons/icon_bottom_tab/Buy.png')} resizeMode='contain' />
-                            <Text style={focused ? { fontSize: 12, color: '#6B50F6', fontWeight: 700 } : { display: 'none' }}>Order</Text>
-                        </View>
-                    ),
-                    tabBarBadge:  3,
-                    tabBarBadgeStyle:{top:20,borderWidth:2, borderColor:'white',elevation:4}
-                }}
-            />
-            <Tab.Screen
-                name="ChatBottom"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <View
-                            style={focused ? { ...styles.tabBarDisplayInFocus} : { ...styles.tabBarDisplayUnFocus }}
-                        >
-                            <Image source={require('../assets/icons/icon_bottom_tab/Chat.png')} resizeMode='contain' />
-                            <Text style={focused ? { fontSize: 12, color: '#6B50F6', fontWeight: 700 } : { display: 'none' }}>Chat</Text>
-                        </View>
-                    )
-                }}
-
-            />
+            {bottomRoutes.map((route,index) => (
+                <Tab.Screen
+                key={index}
+                    name={route.tabName}
+                    component={route.component}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <View
+                                style={focused ? { ...styles.tabBarDisplayInFocus } : { ...styles.tabBarDisplayUnFocus }}
+                            >
+                                <Image source={route.icon} resizeMode='contain' style={styles.iconBottomTab} />
+                                <Text style={focused ? styles.iconLabel : styles.displayNone}>{route.iconLabel}</Text>
+                            </View>
+                        )
+                    }}
+                />
+            ))}
         </Tab.Navigator>
     )
 }
@@ -106,9 +44,7 @@ const BottomTab = () => {
 
 const StackNavigator = () => (
     <Stack.Navigator>
-        <Stack.Screen name="Home" component={BottomTab} options={{ headerShown: false }} />
-        <Stack.Screen name="Post" component={Post} options={{ headerShown: true }} />
-        <Stack.Screen name="Detail" component={Detail} options={{ headerShown: true }} />
+        <Stack.Screen name="HomeStack" component={BottomTab} options={{ headerShown: false }} />
     </Stack.Navigator>
 )
 
@@ -130,14 +66,38 @@ const styles = StyleSheet.create({
         shadowRadius: 3.5,
         elevation: 5,
     },
+    displayNone: {
+        display: 'none'
+    },
+
+    tabBarStyle: {
+        position: 'absolute',
+        bottom: 25,
+        left: 20,
+        right: 20,
+        elevation: 0,
+        backgroundColor: '#ffffff',
+        paddingHorizontal: 20,
+        borderRadius: 26,
+        height: 90,
+        borderColor: 'none'
+    },
     tabBarDisplayInFocus: {
         backgroundColor: '#F0EEFE',
-        padding: 15, 
-        paddingHorizontal: 20, 
+        padding: 13,
+        paddingHorizontal: 20,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         columnGap: 10,
+        width:100
+    },
+    iconLabel: {
+        color: '#6B50F6',
+    },
+    iconBottomTab:{
+        width:25,
+        height:25
     }
 })
