@@ -1,5 +1,4 @@
-import Navigator from './navigator';
-// import Home from './screen/HomePage';
+import Navigator from './navigator/NavIndex';
 
 export default function App() {
   return (<Navigator />)

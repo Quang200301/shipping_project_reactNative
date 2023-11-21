@@ -1,15 +1,41 @@
-import React, { useState } from 'react'
-import { NavigationContainer, useIsFocused } from '@react-navigation/native';
+import React from 'react'
+import Home from '../screen/HomePage'
+import Profile from '../screen/Profile'
+import Buy from '../screen/Buy'
+import Chat from '../screen/Chat'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import bottomRoutes from '../navigator/TabBottom';
+
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
+const bottomRoutes = [
+    {
+        tabName: 'HomeBottom',
+        component: Home,
+        iconLabel: 'Home',
+        icon: require('../assets/icons/icon_bottom_tab/Home.png'),
+    },
+    {
+        tabName: 'ProfileBottom',
+        component: Profile,
+        iconLabel: 'Profile',
+        icon: require('../assets/icons/icon_bottom_tab/Profile.png'),
+    },
+    {
+        tabName: 'BuyBottom',
+        component: Buy,
+        iconLabel: 'Buy',
+        icon: require('../assets/icons/icon_bottom_tab/Buy.png'),
+    },
+    {
+        tabName: 'ChatBottom',
+        component: Chat,
+        iconLabel: 'Chat',
+        icon: require('../assets/icons/icon_bottom_tab/Chat.png'),
+    },
+]
 
-
-const BottomTab = () => {
+export default function BottomRoute() {
     return (
         <Tab.Navigator
             screenOptions={{
@@ -18,9 +44,9 @@ const BottomTab = () => {
                 tabBarStyle: { ...styles.tabBarStyle, ...styles.shadow }
             }}
         >
-            {bottomRoutes.map((route,index) => (
+            {bottomRoutes.map((route, index) => (
                 <Tab.Screen
-                key={index}
+                    key={index}
                     name={route.tabName}
                     component={route.component}
                     options={{
@@ -38,22 +64,6 @@ const BottomTab = () => {
         </Tab.Navigator>
     )
 }
-
-
-
-
-const StackNavigator = () => (
-    <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={BottomTab} options={{ headerShown: false }} />
-    </Stack.Navigator>
-)
-
-const Navigator = () => (
-    <NavigationContainer>
-        <StackNavigator />
-    </NavigationContainer>
-)
-export default Navigator
 
 const styles = StyleSheet.create({
     shadow: {
@@ -77,27 +87,27 @@ const styles = StyleSheet.create({
         right: 20,
         elevation: 0,
         backgroundColor: '#ffffff',
-        paddingHorizontal: 20,
+        paddingHorizontal: 30,
         borderRadius: 26,
         height: 90,
         borderColor: 'none'
     },
     tabBarDisplayInFocus: {
         backgroundColor: '#F0EEFE',
-        padding: 13,
+        paddingVertical:15,
         paddingHorizontal: 20,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        columnGap: 10,
-        width:100
+        justifyContent: 'center',
+        width:'130%',
+        columnGap:10
     },
     iconLabel: {
         color: '#6B50F6',
     },
-    iconBottomTab:{
-        width:25,
-        height:25
+    iconBottomTab: {
+        width: 25,
+        height: 25
     }
 })
