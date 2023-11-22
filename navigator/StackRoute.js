@@ -17,6 +17,11 @@ import Call from '../screen/chat/Call';
 import SearchPage from '../screen/home/SearchPage';
 import DetailPage from '../screen/home/DetailPage';
 import DetailProduct from '../screen/home/DetailProduct';
+
+
+// Tai ----------------------------------
+import ConfirmOder from '../screen/Confirmorder/confirm'
+
 // End stacks ------------------------------------------------
 
 const Stack = createStackNavigator();
@@ -70,6 +75,10 @@ const stackRoute = [
     {
         stackName: 'detailpro',
         component: DetailProduct,
+    },
+    {
+        stackName: 'confirmOrder',
+        component: ConfirmOder,
     },
 ];
 

@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
   chatText: {
     marginTop: 40,
     fontSize: 40,
+    marginLeft:25,
   },
   list: {
     marginTop: 20,

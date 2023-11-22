@@ -48,7 +48,6 @@ export default function CartOrder({navigation}) {
             <TouchableOpacity style={totalPaymentStyles.order} onPress={()=>navigation.navigate('confirmOrder')}>
                 <Text style={totalPaymentStyles.placeOrder}>Place My Order</Text>
             </TouchableOpacity>
-
         </View>
     )
     const RenderItem = ({ data }) => {

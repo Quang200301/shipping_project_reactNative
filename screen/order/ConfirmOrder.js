@@ -11,7 +11,6 @@ const ConfirmOrder = () => {
                     </TouchableOpacity>
                     <Text style={styles.textTitle}>Order details</Text>
                 </View>
-
                 <View style={styles.content}>
                     <Text> Content</Text>
                 </View>
