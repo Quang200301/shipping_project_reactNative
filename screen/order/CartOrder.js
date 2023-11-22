@@ -9,7 +9,7 @@ import { selectTotalAllPrice, selectTotalAllQuantity } from '../../components/fe
 import { SwipeListView } from "react-native-swipe-list-view";
 import { useNavigation } from '@react-navigation/native';
 
-export default function CartOrder({navigation}) {
+export default function CartOrder({ navigation }) {
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
     const totalQuantity = useSelector(selectTotalAllQuantity);
@@ -45,7 +45,12 @@ export default function CartOrder({navigation}) {
                 <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> Total</Text>
                 <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> {totalPrice} $</Text>
             </View>
-            <TouchableOpacity style={totalPaymentStyles.order} onPress={()=>navigation.navigate('confirmOrder')}>
+            <TouchableOpacity
+                style={totalPaymentStyles.order}
+                onPress={
+                    () => navigation.navigate('confirmOrder', { dataPayment: { subTotal, totalPrice } })
+                }
+            >
                 <Text style={totalPaymentStyles.placeOrder}>Place My Order</Text>
             </TouchableOpacity>
         </View>
@@ -145,7 +150,7 @@ const totalPaymentStyles = StyleSheet.create({
         backgroundColor: '#6B50F6',
         marginVertical: 12,
         marginHorizontal: 16,
-        padding:15,
+        padding: 15,
         borderRadius: 26,
     },
     TextInvoice: {
