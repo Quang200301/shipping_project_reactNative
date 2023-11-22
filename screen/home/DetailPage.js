@@ -53,9 +53,7 @@ const DetailPage = ({ navigation, route }) => {
                             </View>
                         </View>
                     </View>
-
                 </ParallaxScrollView>
-
             </View>
             <TouchableOpacity style={styles.addTochart}>
                 <Text style={{color:'white',fontSize:14,fontWeight:'600'}}>Add To Chart</Text>

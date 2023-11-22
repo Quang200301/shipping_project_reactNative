@@ -9,44 +9,44 @@ import { selectTotalAllPrice, selectTotalAllQuantity } from '../../components/fe
 import { SwipeListView } from "react-native-swipe-list-view";
 import { useNavigation } from '@react-navigation/native';
 
-export default function CartOrder() {
+export default function CartOrder({navigation}) {
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
-    const totalQuantity = useSelector(selectTotalAllQuantity); 
+    const totalQuantity = useSelector(selectTotalAllQuantity);
     const totalPrice = useSelector(selectTotalAllPrice);
-    const Discount=20;
-    const subTotal= totalPrice-Discount;
+    const Discount = 20;
+    const subTotal = totalPrice - Discount;
     const incrementItemQuantity = (item) => {
         dispatch(incrementQuantity(item));
     };
     const decrementItemQuantity = (item) => {
         dispatch(decrementQuantity(item));
     };
-    const removeItemfromCart=(item)=>{
+    const removeItemfromCart = (item) => {
         dispatch(removeItem(item))
     }
     const TotalPayment = () => (
-        <View style={styles.totalPayment}>
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Sub - Total</Text>
-                <Text style={styles.TextInvoice}>{subTotal} $</Text>
+        <View style={totalPaymentStyles.totalPayment}>
+            <View style={totalPaymentStyles.detailInvoid}>
+                <Text style={totalPaymentStyles.TextInvoice}> Sub - Total</Text>
+                <Text style={totalPaymentStyles.TextInvoice}>{subTotal} $</Text>
             </View>
 
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Delivery Charge</Text>
-                <Text style={styles.TextInvoice}> 10 $</Text>
+            <View style={totalPaymentStyles.detailInvoid}>
+                <Text style={totalPaymentStyles.TextInvoice}> Delivery Charge</Text>
+                <Text style={totalPaymentStyles.TextInvoice}> 10 $</Text>
             </View>
 
-            <View style={styles.detailInvoid}>
-                <Text style={styles.TextInvoice}> Discount</Text>
-                <Text style={styles.TextInvoice}> 20 $</Text>
+            <View style={totalPaymentStyles.detailInvoid}>
+                <Text style={totalPaymentStyles.TextInvoice}> Discount</Text>
+                <Text style={totalPaymentStyles.TextInvoice}> 20 $</Text>
             </View>
-            <View style={[styles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
-                <Text style={[styles.TextInvoice, { fontSize: 18 }]}> Total</Text>
-                <Text style={[styles.TextInvoice, { fontSize: 18 }]}> {totalPrice} $</Text>
+            <View style={[totalPaymentStyles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
+                <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> Total</Text>
+                <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> {totalPrice} $</Text>
             </View>
-            <TouchableOpacity style={styles.order}>
-                <Text style={styles.placeOrder}>Place My Order</Text>
+            <TouchableOpacity style={totalPaymentStyles.order} onPress={()=>navigation.navigate('confirmOrder')}>
+                <Text style={totalPaymentStyles.placeOrder}>Place My Order</Text>
             </TouchableOpacity>
 
         </View>
@@ -54,30 +54,30 @@ export default function CartOrder() {
     const RenderItem = ({ data }) => {
         return (
             <View style={styles.itemCart}>
-               
+
                 <Image source={data.item.image} style={{ width: 70, height: 70 }} />
                 <View>
-                    <Text style={{ fontSize:18,fontWeight:'700'}}>{data.item.name}</Text>
+                    <Text style={{ fontSize: 18, fontWeight: '700' }}>{data.item.name}</Text>
                 </View>
                 <View>
-                    <Text style={{ fontSize:18,color: '#3F51B5', fontWeight: '800' }}>{data.item.totalPrice} $</Text>
+                    <Text style={{ fontSize: 18, color: '#3F51B5', fontWeight: '800' }}>{data.item.totalPrice} $</Text>
                 </View>
                 <TouchableOpacity onPress={() => decrementItemQuantity(data.item)}>
-                    <Text  style={{backgroundColor:'#FF9012',borderRadius:9}}><Entypo name="minus" size={20} color="white" /></Text>
+                    <Text style={{ backgroundColor: '#FF9012', borderRadius: 9 }}><Entypo name="minus" size={20} color="white" /></Text>
                 </TouchableOpacity>
 
                 <Text style={{ fontWeight: '800' }}>{data.item.quantity}</Text>
 
                 <TouchableOpacity onPress={() => incrementItemQuantity(data.item)}>
-                    <Text style={{backgroundColor:'#6B50F6',borderRadius:9}}><Entypo name="plus" size={20} color="white" /></Text>
+                    <Text style={{ backgroundColor: '#6B50F6', borderRadius: 9 }}><Entypo name="plus" size={20} color="white" /></Text>
                 </TouchableOpacity>
             </View>
         )
     }
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{marginVertical:20,marginHorizontal:18}}>       
-                <Text style={{fontSize:25,fontWeight:'800'}}>Order details</Text>
+            <View style={{ marginVertical: 20, marginHorizontal: 18 }}>
+                <Text style={{ fontSize: 25, fontWeight: '800' }}>Order details</Text>
             </View>
 
             {/* Swipe list */}
@@ -86,18 +86,20 @@ export default function CartOrder() {
                 renderItem={
                     (data, rowMap) => (
                         <RenderItem data={data} />
-                        
+
                     )
                 }
                 renderHiddenItem={
                     (data, rowMap) => (
-                        <View style={{ width: "100%", height: 100}}>
+                        <View style={{ width: "100%", height: 100 }}>
                             <TouchableOpacity
-                                style={{justifyContent:'flex-end',marginTop:25,backgroundColor: '#6B50F6',  padding: 20,marginVertical: 12,borderRadius: 12,height:'85%'
-                                ,marginHorizontal: 18,}}
-                                onPress={()=>removeItemfromCart(data.item)}
+                                style={{
+                                    justifyContent: 'flex-end', marginTop: 25, backgroundColor: '#6B50F6', padding: 20, marginVertical: 12, borderRadius: 12, height: '85%'
+                                    , marginHorizontal: 18,
+                                }}
+                                onPress={() => removeItemfromCart(data.item)}
                             >
-                                <Image style={{marginLeft:'86%',width:40,height:40,paddingTop:30}}
+                                <Image style={{ marginLeft: '86%', width: 40, height: 40, paddingTop: 30 }}
                                     source={require('../../assets/icons/Icontrash.png')}
                                 />
                             </TouchableOpacity>
@@ -109,13 +111,15 @@ export default function CartOrder() {
                 // leftOpenValue={40}
                 rightOpenValue={-70}
             />
-            
+
             <View>
                 <TotalPayment />
             </View>
         </SafeAreaView>
     )
 }
+
+
 const styles = StyleSheet.create({
     itemCart: {
         flexDirection: 'row',
@@ -125,17 +129,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 12,
-        backgroundColor:'white'
+        backgroundColor: 'white'
     },
     container: {
         flex: 1
-    },
+    }
+})
+
+
+const totalPaymentStyles = StyleSheet.create({
     totalPayment: {
+        position: 'absolute',
+        bottom: 100,
+        left: 0,
+        right: 0,
         backgroundColor: '#6B50F6',
         marginVertical: 12,
         marginHorizontal: 16,
+        padding:15,
         borderRadius: 26,
-
     },
     TextInvoice: {
         fontSize: 15,

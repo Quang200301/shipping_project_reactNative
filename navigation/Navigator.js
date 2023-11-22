@@ -3,12 +3,18 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screen/home/Home';
 import { FontAwesome } from "@expo/vector-icons";
 import Menu from '../screen/home/Menu';
 import { Text, } from 'react-native';
 import { StatusBar } from "expo-status-bar";
+
+//  bottom tab .....................................
+import Home from '../screen/home/Home';
+import CartOrder from '../screen/order/CartOrder';
 import Message from "../screen/chat/Messagex";
+
+
+
 import ChatDetail from "../screen/chat/ChatDetails";
 import CallRinging from "../screen/chat/CallRinging";
 import Call from "../screen/chat/Call";
@@ -19,19 +25,20 @@ import DetailPage from '../screen/home/DetailPage';
 import TestSwipeListView from "../screen/order/OrderDetails";
 import ShoppingCartPage from '../screen/home/ShoppingCartPage';
 import ProductCart from '../screen/order/ProductCart';
-import CartOrder from '../screen/order/CartOrder';
-import DetailProduct from '../screen/home/DetailProduct';
+
+// stack navigators .......................................
 import SignUp from '../components/Login/SignUp';
 import SignIn from '../components/Login/SignIn';
+import DetailProduct from '../screen/home/DetailProduct';
+
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigator() {
   const BottomTab = () => {
     return (
       <Tab.Navigator
-     
         screenOptions={({ route }) => ({
-         
           headerShown: false,
           tabBarLabel: ({ focused, color }) => {
             if (focused) {
@@ -64,7 +71,6 @@ export default function Navigator() {
         />
         <Tab.Screen name="User" component={CartOrder}
           options={{
-
             tabBarIcon: ({ color }) => <FontAwesome name='user' size={30} color={color} />,
           }}
         />

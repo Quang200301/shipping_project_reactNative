@@ -1,8 +1,8 @@
-import React from 'react'
-import Home from '../screen/HomePage'
-import Profile from '../screen/Profile'
-import Buy from '../screen/Buy'
-import Chat from '../screen/Chat'
+import React from 'react';
+import Home from '../screen/home/Home';
+import Profile from '../screen/Profile';
+import Buy from '../screen/order/CartOrder';
+import Chat from '../screen/chat/Messagex';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -33,13 +33,13 @@ const bottomRoutes = [
         iconLabel: 'Chat',
         icon: require('../assets/icons/icon_bottom_tab/Chat.png'),
     },
-]
+];
 
 export default function BottomRoute() {
     return (
         <Tab.Navigator
             screenOptions={{
-                headerShown: true,
+                headerShown: false,
                 tabBarShowLabel: false,
                 tabBarStyle: { ...styles.tabBarStyle, ...styles.shadow }
             }}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 
     tabBarStyle: {
         position: 'absolute',
-        bottom: 25,
+        bottom: 10,
         left: 20,
         right: 20,
         elevation: 0,
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
     },
     tabBarDisplayInFocus: {
         backgroundColor: '#F0EEFE',
-        paddingVertical:15,
+        paddingVertical: 15,
         paddingHorizontal: 20,
         borderRadius: 12,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width:'130%',
-        columnGap:10
+        width: '130%',
+        columnGap: 10
     },
     iconLabel: {
         color: '#6B50F6',

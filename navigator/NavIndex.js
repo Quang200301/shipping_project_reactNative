@@ -7,5 +7,4 @@ const Navigator = () => (
        <StackRoute />
     </NavigationContainer>
 )
-
 export default Navigator
