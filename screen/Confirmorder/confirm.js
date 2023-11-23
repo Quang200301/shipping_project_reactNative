@@ -41,7 +41,7 @@ const TotalPayment = (props) => (
   </View>
 )
 
-export default function ConfirmOder({ route, navigation }) {
+export default function ConfirmOrder({ route, navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
@@ -62,7 +62,7 @@ export default function ConfirmOder({ route, navigation }) {
         <View style={styles.deliverLocation}>
           <View style={styles.actionEdit}>
             <Text style={styles.delivers}>Deliver To</Text>
-            <Text style={styles.deliver}>Edit</Text>
+            <Text onPress={() => navigation.navigate('Map')} style={styles.deliver}>Edit</Text>
           </View>
 
           <View style={styles.location}>
@@ -77,7 +77,7 @@ export default function ConfirmOder({ route, navigation }) {
             </Text>
           </View>
         </View>
-        
+
         {/* <View style={styles.backgroundAd}>
           <View style={styles.actionEdit}>
             <Text style={styles.delivers}>Payment Method</Text>
@@ -98,14 +98,8 @@ export default function ConfirmOder({ route, navigation }) {
       </View>
 
 
-      <View
-        style={[
-          styles.footer,
-          { height: "32%", width: "100%" },
-        ]}
-      >
-        {/* <TotalPayment data={route.params.dataPayment} /> */}
-      </View>
+
+      {/* <TotalPayment data={route.params.dataPayment} /> */}
     </SafeAreaView>
   );
 }
@@ -117,7 +111,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: "flex-start",
     backgroundColor: 'pink',
-    position:'relative'
+    position: 'relative'
   },
   textTile: {
     fontSize: 25,
@@ -129,41 +123,19 @@ const styles = StyleSheet.create({
   paymentInfo: {
     rowGap: 20,
     backgroundColor: 'yellow',
-    width:'100%',
+    width: '100%',
   },
   deliverLocation: {
     justifyContent: "center",
     height: 120,
     backgroundColor: "#fff",
-    width:'100%',
+    width: '100%',
   },
 
-  // locations: {
-  //   flexDirection: 'row',
-  // },
-
-  // actionEdit: {
-  //   flexDirection: "row",
-  //   justifyContent: "space-between",
-  // },
- 
-  // deliver: {
-  //   opacity: 0.5,
-  //   fontSize: 14,
-  //   color: "#6B50F6",
-  // },
-  // location: {
-  //   flexDirection: "row",
-  // },
-  // image: {
-  //   width: "30%",
-  //   justifyContent: "center",
-  //   backgroundColor: "white 78",
-  // },
-  footer: {
-    height: "30%",
-    borderRadius: 10,
-  },
+  actionEdit:{
+    display:'flex',
+    justifyContent:'space-between'
+  }
 });
 
 const totalPaymentStyles = StyleSheet.create({

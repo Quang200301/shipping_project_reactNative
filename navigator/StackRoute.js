@@ -17,10 +17,10 @@ import Call from '../screen/chat/Call';
 import SearchPage from '../screen/home/SearchPage';
 import DetailPage from '../screen/home/DetailPage';
 import DetailProduct from '../screen/home/DetailProduct';
-
+import Map from '../screen/map/Map';
 
 // Tai ----------------------------------
-import ConfirmOder from '../screen/Confirmorder/confirm'
+import ConfirmOrder from '../screen/Confirmorder/confirm'
 
 // End stacks ------------------------------------------------
 
@@ -78,7 +78,11 @@ const stackRoute = [
     },
     {
         stackName: 'confirmOrder',
-        component: ConfirmOder,
+        component: ConfirmOrder,
+    },
+    {
+        stackName: 'Map',
+        component: Map,
     },
 ];
 
