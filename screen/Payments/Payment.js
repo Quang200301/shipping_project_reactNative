@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function Voucher() {
+export default function PaymentMethod({ navigation }) {
   const [selectedPayment, setSelectedPayment] = useState(null);
 
   const handlePaymentPress = (payment) => {
@@ -25,7 +25,12 @@ export default function Voucher() {
           styles.backgroundAd,
           isSelected && styles.selectedBackgroundAd,
         ]}
-        onPress={() => handlePaymentPress(item.id)}
+        onPress={
+          () => {
+            handlePaymentPress(item.id)
+            navigation.goBack()
+          }
+        }
       >
         <View style={styles.image}>
           <Image source={item.image} style={styles.image2} />
@@ -40,10 +45,14 @@ export default function Voucher() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Image
-          source={require("../../assets/images/combackicon.png")}
-          style={styles.image1}
-        />
+        <TouchableOpacity
+          onPress={()=>navigation.goBack()}
+        >
+          <Image
+            source={require("../../assets/images/combackicon.png")}
+            style={styles.image1}
+          />
+        </TouchableOpacity>
         <View>
           <Text style={styles.textTile}>Payment</Text>
         </View>
@@ -107,7 +116,7 @@ const styles = StyleSheet.create({
     padding: 5,
     flexDirection: "row",
     borderRadius: 20,
-    marginBottom: 20, 
+    marginBottom: 20,
   },
   selectedBackgroundAd: {
     backgroundColor: "#fff",

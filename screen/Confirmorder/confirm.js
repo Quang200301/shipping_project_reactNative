@@ -43,7 +43,7 @@ const TotalPayment = (props) => (
 
 export default function ConfirmOrder({ route, navigation }) {
   return (
-    <SafeAreaView style={{height:'100%'}}>
+    <SafeAreaView style={{ height: '100%' }}>
       <View style={styles.bodyContainer}>
 
         <TouchableOpacity
@@ -62,7 +62,9 @@ export default function ConfirmOrder({ route, navigation }) {
 
             <View style={[styles.row, styles.actionEdit]}>
               <Text style={styles.deliverText}>Deliver To</Text>
-              <TouchableOpacity>
+              <TouchableOpacity 
+                onPress={()=> navigation.navigate('Shipping')}
+              >
                 <Text style={styles.editText}>Edit</Text>
               </TouchableOpacity>
             </View>
@@ -87,7 +89,9 @@ export default function ConfirmOrder({ route, navigation }) {
 
             <View style={[styles.row, styles.actionEdit]}>
               <Text style={styles.deliverText}>Payment Method</Text>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={()=>navigation.navigate('PaymentMethod')}
+              >
                 <Text style={styles.editText}>Edit</Text>
               </TouchableOpacity>
             </View>
@@ -111,7 +115,7 @@ export default function ConfirmOrder({ route, navigation }) {
 
 
       </View>
-        <TotalPayment data={route.params.dataPayment} />
+      <TotalPayment data={route.params.dataPayment} />
     </SafeAreaView>
   );
 }
@@ -183,7 +187,7 @@ const totalPaymentStyles = StyleSheet.create({
     position: 'absolute',
     right: 10,
     left: 10,
-    bottom:10,
+    bottom: 10,
     backgroundColor: '#6B50F6',
     padding: 10,
     borderRadius: 20,

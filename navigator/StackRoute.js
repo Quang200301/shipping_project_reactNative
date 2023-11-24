@@ -21,6 +21,9 @@ import Map from '../screen/map/Map';
 
 // Tai ----------------------------------
 import ConfirmOrder from '../screen/Confirmorder/confirm'
+import Shipping from '../screen/Shipping/ShippingLocation';
+import PaymentMethod from '../screen/Payments/Payment';
+import CartOrder from '../screen/order/CartOrder';
 
 // End stacks ------------------------------------------------
 
@@ -83,6 +86,18 @@ const stackRoute = [
     {
         stackName: 'Map',
         component: Map,
+    },
+    {
+        stackName: 'Shipping',
+        component: Shipping,
+    },
+    {
+        stackName: 'PaymentMethod',
+        component:PaymentMethod,
+    },
+    {
+        stackName: 'Buy',
+        component:CartOrder,
     },
 ];
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Home from '../screen/home/Home';
 import Profile from '../screen/Profile';
 import Buy from '../screen/order/CartOrder';
 import Chat from '../screen/chat/Messagex';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +35,8 @@ const bottomRoutes = [
     },
 ];
 
-export default function BottomRoute() {
+export default function BottomRoute({ navigation }) {
+    const [buy, setBuy] = useState(false);
     return (
         <Tab.Navigator
             screenOptions={{
@@ -58,7 +59,8 @@ export default function BottomRoute() {
                                 <Text style={focused ? styles.iconLabel : styles.displayNone}>{route.iconLabel}</Text>
                             </View>
                         )
-                    }}
+                    }
+                    }
                 />
             ))}
         </Tab.Navigator>

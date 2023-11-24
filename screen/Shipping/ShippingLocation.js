@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -6,25 +6,30 @@ import {
   SafeAreaView,
   Image,
   Button,
+  TouchableOpacity,
 } from "react-native";
-export default function shipping() {
+export default function Shipping({ route, navigation }) {
+  const [addressParent, setAddress] = useState('101B Le Huu Trac, Son Tra, Da Nang');
+  const  {addressChild}  = route.params ||  {addressChild:addressParent} ;
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        {/* Header */}
-        <View
+
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
           style={[
             styles.header,
-            { height: "10%", width: "100%",},
+            { height: "10%", width: "100%", },
           ]}
         >
           <Image
             source={require("../../assets/images/combackicon.png")}
             style={[styles.image1]}
           />
-          <View>
-            <Text style={styles.textTile}>Shipping</Text>
-          </View>
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.textTile}>Shipping</Text>
         </View>
         <View
           style={[
@@ -51,27 +56,29 @@ export default function shipping() {
                 </View>
 
                 <Text style={{ width: "80%", fontSize: 15, color: "#22242E" }}>
-                8502 Preston Rd. Inglewood,{"\n"} Maine 98380
+                  8502 Preston Rd. Inglewood,{"\n"} Maine 98380
 
                 </Text>
               </View>
             </View>
-            <View style={[styles.backgroundAd, {height:141}]}>
+            <View style={[styles.backgroundAd, { height: 141 }]}>
               <View style={styles.actionEdit}>
                 <Text style={styles.delivers}>Deliver To</Text>
               </View>
 
-             <View style={styles.locations}>
-              <View style={{ width: "20%" }}>
-                <Image source={require("../../assets/images/locationIcon.png")} />
+              <View style={styles.locations}>
+                <View style={{ width: "20%" }}>
+                  <Image source={require("../../assets/images/locationIcon.png")} />
+                </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Map')}
+                  style={{ width: "80%" }}>
+                  <Text style={{ fontSize: 15, color: "#22242E" }}>
+                    {addressChild}
+                  </Text>
+                  <Text style={{ fontSize: 15, color: "#6B50F6" }}>Set location</Text>
+                </TouchableOpacity>
               </View>
-              <View style={{ width: "80%" }}>
-                <Text style={{ fontSize: 15, color: "#22242E" }}>
-                  4517 Washington Ave. Manchester, {"\n"} Kentucky 39495
-                </Text>
-                <Text style={{ fontSize: 15, color: "#6B50F6" }}>Set location</Text>
-              </View>
-            </View>
             </View>
           </View>
         </View>
@@ -81,7 +88,7 @@ export default function shipping() {
             { height: "32%", width: "100%" },
           ]}
         >
-          {/* <TotalPayment /> */}
+    
         </View>
       </View>
     </SafeAreaView>
@@ -95,16 +102,16 @@ const styles = StyleSheet.create({
   },
   textTile: {
     fontSize: 25,
-    marginLeft:10,
+    marginLeft: 10,
   },
-  locations:{
-    flexDirection:'row',
-    },
+  locations: {
+    flexDirection: 'row',
+  },
   itemframe: {
     width: "100%",
     // backgroundColor: "yellow",
     height: "100%",
-    rowGap:20,
+    rowGap: 20,
   },
   actionEdit: {
     flexDirection: "row",
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
   deliver: {
     opacity: 0.5,
     fontSize: 14,
-    color:"#6B50F6",
+    color: "#6B50F6",
   },
   location: {
     flexDirection: "row",
