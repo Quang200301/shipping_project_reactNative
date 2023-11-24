@@ -43,75 +43,84 @@ const TotalPayment = (props) => (
 
 export default function ConfirmOrder({ route, navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        style={[styles.header, { height: "10%", width: "100%", backgroundColor: 'red', justifyContent: 'center' },]}
-        onPress={() => navigation.goBack()}
-      >
-        <Image source={require("../../assets/images/combackicon.png")} />
-      </TouchableOpacity>
+    <SafeAreaView style={{height:'100%'}}>
+      <View style={styles.bodyContainer}>
 
-      <View>
-        <Text style={styles.textTile}>Confirm Order</Text>
-      </View>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+        >
+          <Image source={require("../../assets/images/combackicon.png")} />
+        </TouchableOpacity>
+        <View>
+          <Text style={styles.textTile}>Confirm Order</Text>
+        </View>
 
 
+        <View style={styles.paymentInfo}>
 
-      <View style={styles.paymentInfo}>
+          <View style={styles.deliverLocation}>
 
-        <View style={styles.deliverLocation}>
-          <View style={styles.actionEdit}>
-            <Text style={styles.delivers}>Deliver To</Text>
-            <Text onPress={() => navigation.navigate('Map')} style={styles.deliver}>Edit</Text>
-          </View>
-
-          <View style={styles.location}>
-            <View style={{ width: "20%" }}>
-              <Image
-                source={require("../../assets/images/locationIcon.png")}
-              />
+            <View style={[styles.row, styles.actionEdit]}>
+              <Text style={styles.deliverText}>Deliver To</Text>
+              <TouchableOpacity>
+                <Text style={styles.editText}>Edit</Text>
+              </TouchableOpacity>
             </View>
 
-            <Text style={styles.textAddress}>
-              4517 Washington Ave. Manchester, Kentucky 39495
-            </Text>
+            <View style={[styles.location, styles.row]}>
+              <View style={styles.iconLocation}>
+                <Image
+                  source={require("../../assets/images/locationIcon.png")}
+                  resizeMode="contain"
+                />
+              </View>
+
+              <Text style={styles.textAddress}>
+                4517 Washington Ave. Manchester, Kentucky 39490
+              </Text>
+            </View>
+
+          </View>
+
+          {/* This is payment method */}
+          <View style={styles.deliverLocation}>
+
+            <View style={[styles.row, styles.actionEdit]}>
+              <Text style={styles.deliverText}>Payment Method</Text>
+              <TouchableOpacity>
+                <Text style={styles.editText}>Edit</Text>
+              </TouchableOpacity>
+            </View>
+
+            <View style={[styles.location, styles.row]}>
+              <View style={styles.iconLocation}>
+                <Image
+                  source={require("../../assets/images/paypal.png")}
+                  resizeMode="contain"
+                />
+              </View>
+
+              <Text style={[styles.textAddress, { textAlign: 'right' }]}>
+                2121 6352 8465 ****
+              </Text>
+            </View>
+
           </View>
         </View>
 
-        {/* <View style={styles.backgroundAd}>
-          <View style={styles.actionEdit}>
-            <Text style={styles.delivers}>Payment Method</Text>
-            <Text style={styles.deliver}>Edit</Text>
-          </View>
 
-          <View style={styles.locations}>
-            <View style={{ width: "20%" }}>
-              <Image
-                source={require("../../assets/images/paypal.png")}
-              />
-            </View>
-            <Text style={{ width: "80%", fontSize: 15, marginLeft: 180, }}>
-              123456789012****
-            </Text>
-          </View>
-        </View> */}
+
       </View>
-
-
-
-      {/* <TotalPayment data={route.params.dataPayment} /> */}
+        <TotalPayment data={route.params.dataPayment} />
     </SafeAreaView>
   );
 }
+
+
 const styles = StyleSheet.create({
-  container: {
-    height: '100%',
+  bodyContainer: {
     marginTop: 30,
     margin: 10,
-    marginBottom: 10,
-    alignItems: "flex-start",
-    backgroundColor: 'pink',
-    position: 'relative'
   },
   textTile: {
     fontSize: 25,
@@ -119,31 +128,62 @@ const styles = StyleSheet.create({
     color: "#6B50F6",
     elevation: 5
   },
-
   paymentInfo: {
     rowGap: 20,
-    backgroundColor: 'yellow',
-    width: '100%',
+    width: '100%'
   },
   deliverLocation: {
-    justifyContent: "center",
+    marginTop: 10,
     height: 120,
     backgroundColor: "#fff",
-    width: '100%',
+    borderRadius: 20,
+    padding: 18,
+    elevation: 4,
+    justifyContent: 'space-evenly'
+  },
+  actionEdit: {
+    justifyContent: 'space-between',
+    color: '#6B50F6',
   },
 
-  actionEdit:{
-    display:'flex',
-    justifyContent:'space-between'
+  deliverText: {
+    textAlign: 'right',
+    fontSize: 16,
+    paddingBottom: 10,
+    opacity: 0.3
+  },
+  editText: {
+    flex: 1,
+    fontSize: 16,
+    paddingBottom: 10,
+    textAlign: 'right',
+    color: '#6B50F6',
+    paddingLeft: 30
+  },
+  location: {
+    alignItems: 'center'
+  },
+  iconLocation: {
+    minWidth: '10%',
+    paddingRight: 20
+  },
+  textAddress: {
+    fontSize: 18,
+    flex: 1
+  }
+
+  ,
+  row: {
+    flexDirection: 'row'
   }
 });
 
 const totalPaymentStyles = StyleSheet.create({
   totalPayment: {
     position: 'absolute',
-    right: 0,
-    left: 0,
-    bottom: 0,
+    right: 10,
+    left: 10,
+    bottom:10,
     backgroundColor: '#6B50F6',
     padding: 10,
     borderRadius: 20,
@@ -170,5 +210,5 @@ const totalPaymentStyles = StyleSheet.create({
     color: '#6B50F6',
     fontSize: 20,
     fontWeight: '900'
-  }
+  },
 })
