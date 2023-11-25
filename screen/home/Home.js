@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
                         Find Your {'\n'}Favorite Food
                     </Text>
                    
-                        <FontAwesome style={{ marginTop: 30}} name={"bell-o"} size={28} color="#6b50f6"/>
+                        <FontAwesome style={{ marginTop: 30}} name={"bell-o"} size={28} color="#6b50f6" onPress={()=>navigation.navigate('notification')}/>
                         
                     
                 </View>

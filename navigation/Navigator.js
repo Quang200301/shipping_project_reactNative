@@ -23,6 +23,8 @@ import CartOrder from '../screen/order/CartOrder';
 import DetailProduct from '../screen/home/DetailProduct';
 import SignUp from '../components/Login/SignUp';
 import SignIn from '../components/Login/SignIn';
+import Profile from '../screen/Profile/Profile';
+import Notification from '../screen/home/Notification';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function Navigator() {
@@ -62,17 +64,15 @@ export default function Navigator() {
             tabBarIcon: ({ color }) => <FontAwesome name='home' size={30} color={color} />,
           }}
         />
-        <Tab.Screen name="User" component={CartOrder}
+        <Tab.Screen name="profile" component={Profile}
           options={{
-
             tabBarIcon: ({ color }) => <FontAwesome name='user' size={30} color={color} />,
           }}
         />
         <Tab.Screen name="Cart" component={CartOrder}
         
           options={{
-            tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,
-          
+            tabBarIcon: ({ color }) => <FontAwesome name='shopping-cart' size={30} color={color} />,      
           }}
          
         />
@@ -100,6 +100,8 @@ export default function Navigator() {
         <Stack.Screen name='detailpage' component={DetailPage}/>
         <Stack.Screen name='Test' component={DetailPage}/>
         <Stack.Screen name='detailpro' component={DetailProduct}/>
+        <Stack.Screen name='notification' component={Notification}/>
+        
       </Stack.Navigator>
     </NavigationContainer>
   )

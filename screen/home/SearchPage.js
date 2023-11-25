@@ -3,32 +3,32 @@ import { View, Text, StyleSheet, Pressable, TextInput, TouchableOpacity, Image, 
 import { FontAwesome } from "@expo/vector-icons";
 import { ListData } from "./ListData";
 export default function SearchPage() {
-   const [selectedCategory, setSelectedCategory] = useState(null);
-   const renderItem = ({ item }) => {
-    if (selectedCategory && item.category !== selectedCategory) {
-        return null;
-      }
-    return (
-        <View style={styles.container}>
-            <View style={styles.contentCard}>
-            <Image source={item.image} style={styles.imagess}/>
-                <View >
-                    <Text style={styles.itemName}>{item.name}</Text>
-                    <Text style={styles.itemDesc}>{item.description}</Text>
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const renderItem = ({ item }) => {
+        if (selectedCategory && item.category !== selectedCategory) {
+            return null;
+        }
+        return (
+            <View style={styles.container}>
+                <View style={styles.contentCard}>
+                    <Image source={item.image} style={styles.imagess} />
+                    <View >
+                        <Text style={styles.itemName}>{item.name}</Text>
+                        <Text style={styles.itemDesc}>{item.description}</Text>
+                    </View>
+                    <View>
+                        <Text style={styles.itemPrice}>{item.price}</Text>
+                    </View>
                 </View>
-                <View>
-                    <Text style={styles.itemPrice}>{item.price}</Text>
             </View>
-            </View>
-        </View>
-    );
-}
-const selectCategory = (category) => {
-    setSelectedCategory(category);
-  }
+        );
+    }
+    const selectCategory = (category) => {
+        setSelectedCategory(category);
+    }
     return (
         <>
-            <View style={{ flex:1,backgroundColor:"#FEFEFF" }}>
+            <View style={{ flex: 1, backgroundColor: "#FEFEFF" }}>
                 <View style={{ flexDirection: "row", justifyContent: "space-around", paddingTop: 20, width: "100%", alignItems: "center" }}>
                     <Text style={{ fontSize: 40, fontWeight: "bold" }}>
                         Find Your {'\n'}Favorite Food
@@ -57,23 +57,24 @@ const selectCategory = (category) => {
                         >
                         </TextInput>
                     </View>
-               
+
                 </Pressable>
-                <Text style={{marginHorizontal:16,fontSize:20,fontWeight:"800"}}>Type</Text>
+                <Text style={{ marginHorizontal: 16, fontSize: 20, fontWeight: "800" }}>Type</Text>
                 <View style={styles.buttomcategory}>
-                <TouchableOpacity
-                    style={selectedCategory  === 'haisan' ? styles.activeButton : styles.button}
-                    onPress={() => selectCategory('haisan')}
-                >
-                    <Text style={{ color: '#6B50F6' }}>Hải Sản Tươi</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={selectedCategory  === 'thitkho' ? styles.activeButton : styles.button}
-                    onPress={() => selectCategory('thitkho')}
-                >
-                    <Text style={{ color: '#6B50F6' }}>Thịt Khô Vùng Núi</Text>
-                </TouchableOpacity>
-                {/* {selectedCategory !== 'haisan' && (
+                    <TouchableOpacity
+                        style={selectedCategory === 'haisan' ? styles.activeButton : styles.button}
+                        onPress={() => selectCategory('haisan')}
+                    >
+                        <Text style={{ color: '#6B50F6' }}>Hải Sản Tươi</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={selectedCategory === 'thitkho' ? styles.activeButton : styles.button}
+                        onPress={() => selectCategory('thitkho')}
+                    >
+                        <Text style={{ color: '#6B50F6' }}>Thịt Khô Vùng Núi</Text>
+                    </TouchableOpacity>
+
+                    {/* {selectedCategory !== 'haisan' && (
             <Pressable
               style={styles.button}
               onPress={() => selectCategory('haisan')}
@@ -89,18 +90,36 @@ const selectCategory = (category) => {
               <Text style={{ color: '#6B50F6' }}>Thịt Khô Vùng Núi</Text>
             </Pressable>
           )} */}
-                
+
                 </View>
-                
-            {selectedCategory && (
-            <FlatList
-                data={ListData}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-            />
-            )}
+                <View>
+                    <Text style={{ fontSize: 19, fontWeight: '800', marginHorizontal: 18 }}>Location</Text>
+                    <View style={{ marginVertical: 8, marginHorizontal: 16, flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <TouchableOpacity style={{width:70,height:40,backgroundColor:'#80DEEA',borderRadius:12,justifyContent:'center',alignItems:'center'}}>
+                            <Text>1 Km</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity  style={{width:70,height:40,backgroundColor:'#80DEEA',borderRadius:12,justifyContent:'center',alignItems:'center'}}>
+                            <Text>{'\>'}10 Km</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity  style={{width:70,height:40,backgroundColor:'#80DEEA',borderRadius:12,justifyContent:'center',alignItems:'center'}}>
+                            <Text>{'\<'}10 Km</Text>
+                        </TouchableOpacity>
+
+
+                    </View>
+
+                </View>
+
+                {selectedCategory && (
+                    <FlatList
+                        data={ListData}
+                        renderItem={renderItem}
+                        keyExtractor={item => item.id}
+                    />
+                )}
             </View>
-        </>    
+
+        </>
     )
 }
 const styles = StyleSheet.create({
@@ -130,7 +149,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         marginHorizontal: 16,
-       
+
 
 
 
@@ -160,33 +179,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
-    categoryCate:{
-        backgroundColor:'#66BB6A',
-        fontSize:30,
-        fontWeight:"bold",
-        color:'white',
-        borderRadius:16,
-        width:280,
-        textAlign:'center',
-        padding:10,
-        marginVertical:23
+    categoryCate: {
+        backgroundColor: '#66BB6A',
+        fontSize: 30,
+        fontWeight: "bold",
+        color: 'white',
+        borderRadius: 16,
+        width: 280,
+        textAlign: 'center',
+        padding: 10,
+        marginVertical: 23
 
     },
-    DataCategory:{
-        backgroundColor:"#FFFFFF",
+    DataCategory: {
+        backgroundColor: "#FFFFFF",
         padding: 10,
         marginVertical: 15,
         borderRadius: 16,
-        width:"90%"
+        width: "90%"
     },
-    CategoryContent:{
-        marginHorizontal:16,
-        flexDirection:"row",
-        gap:20,
-        marginStart:5
-       
+    CategoryContent: {
+        marginHorizontal: 16,
+        flexDirection: "row",
+        gap: 20,
+        marginStart: 5
+
     },
-    typename:{
+    typename: {
         padding: 10,
         marginVertical: 8,
         marginHorizontal: 42,
@@ -200,30 +219,30 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         marginHorizontal: 16,
         justifyContent: 'space-around',
-       
-        
+
+
     },
     button: {
         padding: 10,
-        backgroundColor:'#80DEEA',
+        backgroundColor: '#80DEEA',
         borderRadius: 8,
-      },
-      activeButton: {
+    },
+    activeButton: {
         padding: 10,
         backgroundColor: '#FFCC80',
         borderRadius: 8,
-      },
-      imagess:{
-        width:80,
-        height:80,
     },
-    contentCard:{
-        flexDirection:"row",
-        justifyContent:"space-around",
-        padding:10,
-        marginHorizontal:28,
-        marginVertical:16,
-        backgroundColor:"#F5F5F5",
-        borderRadius:16
-        },
+    imagess: {
+        width: 80,
+        height: 80,
+    },
+    contentCard: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 10,
+        marginHorizontal: 28,
+        marginVertical: 16,
+        backgroundColor: "#F5F5F5",
+        borderRadius: 16
+    },
 })

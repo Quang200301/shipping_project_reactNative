@@ -93,7 +93,7 @@ export default function CartOrder() {
                     (data, rowMap) => (
                         <View style={{ width: "100%", height: 100}}>
                             <TouchableOpacity
-                                style={{justifyContent:'flex-end',marginTop:25,backgroundColor: '#6B50F6',  padding: 20,marginVertical: 12,borderRadius: 12,height:'85%'
+                                style={{justifyContent:'flex-end',marginTop:12,backgroundColor: '#6B50F6',  padding: 20,borderRadius: 12,height:'90%'
                                 ,marginHorizontal: 18,}}
                                 onPress={()=>removeItemfromCart(data.item)}
                             >
