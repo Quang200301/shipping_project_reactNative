@@ -205,7 +205,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         justifyContent: 'space-around',
-        borderRadius: 22
+        borderRadius: 22,
+        marginTop:-9
     },
 
     input: {

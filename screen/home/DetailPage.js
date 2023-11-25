@@ -1,12 +1,21 @@
-import { View, Text, StyleSheet, Pressable, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { FontAwesome5 } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import CardItem from './CardItem';
 import Testimonials from './Testimonials';
+import { addItem } from "../../components/features/counterSlice";
+import { useSelector, useDispatch } from 'react-redux';
 const DetailPage = ({ navigation, route }) => {
     const { item } = route.params;
+    const dispatch = useDispatch();
+
+    const addedItemss = useSelector((state) => state.cart.cart);
+    console.log('âddd=>', addedItemss)
+    const addToCart = item => {
+        dispatch(addItem(item));
+    };
     return (
         <>
             <View style={{ flex: 1 }}>
@@ -56,7 +65,7 @@ const DetailPage = ({ navigation, route }) => {
                 </ParallaxScrollView>
             </View>
             <TouchableOpacity style={styles.addTochart}>
-                <Text style={{color:'white',fontSize:14,fontWeight:'600'}}>Add To Chart</Text>
+                <Text style={{color:'white',fontSize:14,fontWeight:'600'}} onPress={() => addToCart(item)}>Add To Chart</Text>
             </TouchableOpacity>
         </>
 

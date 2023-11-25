@@ -25,6 +25,7 @@ import Shipping from '../screen/Shipping/ShippingLocation';
 import PaymentMethod from '../screen/Payments/Payment';
 import CartOrder from '../screen/order/CartOrder';
 import YourOrder from '../screen/order/YourOrder';
+import Notification from '../screen/home/Notification';
 
 // End stacks ------------------------------------------------
 
@@ -103,7 +104,11 @@ const stackRoute = [
     {
         stackName: 'YourOrder',
         component: YourOrder,
-    }
+    },
+    {
+        stackName: 'notification',
+        component: Notification,
+    },
 ];
 
 export default function StackRoute() {

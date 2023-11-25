@@ -5,6 +5,8 @@ import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { signInWithPopup } from "firebase/auth";
+import {auth,pro} from  '../config/'
 export default function SignIn({ navigation }) {
     const [LoginEmail, setLoginEmail] = useState('');
     const [LoginPassword, setLoginPassword] = useState('');
@@ -22,6 +24,34 @@ export default function SignIn({ navigation }) {
         } catch (error) {
             console.error('Error retrieving data from AsyncStorage:', error);
         }
+    }
+
+    function signUp() {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                // const credential = GoogleAuthProvider.credentialFromResult(result);
+                // const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+                navigation.navigate('home');
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(errorMessage);
+                // ...
+            });
+
+    };
+    function signIn() {
+
     }
     return (
         <ScrollView style={styles.container}>
@@ -55,7 +85,7 @@ export default function SignIn({ navigation }) {
                         <Entypo name="facebook-with-circle" size={24} color="#3C5A9A" />
                         <Text>Facebook</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ flexDirection: 'row', gap: 8, alignItems: 'center', backgroundColor: '#F4F4F4', height: 50, width: 140, padding: 10, justifyContent: 'center', borderRadius: 12 }}>
+                    <TouchableOpacity style={{ flexDirection: 'row', gap: 8, alignItems: 'center', backgroundColor: '#F4F4F4', height: 50, width: 140, padding: 10, justifyContent: 'center', borderRadius: 12 }} onPress={()=>signUp()}>
                         <FontAwesome5 name="google" size={24} color="#3C5A9A" />
                         <Text>Google</Text>
                     </TouchableOpacity>

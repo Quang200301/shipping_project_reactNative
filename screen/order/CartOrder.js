@@ -98,11 +98,9 @@ export default function CartOrder({ navigation }) {
                     (data, rowMap) => (
                         <View style={{ width: "100%", height: 100 }}>
                             <TouchableOpacity
-                                style={{
-                                    justifyContent: 'flex-end', marginTop: 25, backgroundColor: '#6B50F6', padding: 20, marginVertical: 12, borderRadius: 12, height: '85%'
-                                    , marginHorizontal: 18,
-                                }}
-                                onPress={() => removeItemfromCart(data.item)}
+                                style={{justifyContent:'flex-end',marginTop:12,backgroundColor: '#6B50F6',  padding: 20,borderRadius: 12,height:'90%'
+                                ,marginHorizontal: 18,}}
+                                onPress={()=>removeItemfromCart(data.item)}
                             >
                                 <Image style={{ marginLeft: '86%', width: 40, height: 40, paddingTop: 30 }}
                                     source={require('../../assets/icons/Icontrash.png')}

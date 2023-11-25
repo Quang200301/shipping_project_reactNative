@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Home from '../screen/home/Home';
-import Profile from '../screen/Profile';
+import Profile from '../screen/ProfileUser/Profile';
 import Buy from '../screen/order/CartOrder';
 import Chat from '../screen/chat/Messagex';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -16,7 +16,7 @@ const bottomRoutes = [
         icon: require('../assets/icons/icon_bottom_tab/Home.png'),
     },
     {
-        tabName: 'ProfileBottom',
+        tabName: 'profile',
         component: Profile,
         iconLabel: 'Profile',
         icon: require('../assets/icons/icon_bottom_tab/Profile.png'),
