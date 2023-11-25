@@ -114,7 +114,7 @@ const stackRoute = [
 export default function StackRoute() {
     return (
         <Stack.Navigator
-            initialRouteName='home'
+            initialRouteName='signup'
         >
             {
                 stackRoute.map(
