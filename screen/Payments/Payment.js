@@ -9,6 +9,24 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+const paymentData = [
+  {
+    id: 1,
+    image: require("../../assets/images/paypal.png"),
+    number: "234466345634***1",
+  },
+  {
+    id: 2,
+    image: require("../../assets/images/visa.png"),
+    number: "234466345634***2",
+  },
+  {
+    id: 3,
+    image: require("../../assets/images/layer3.png"),
+    number: "234466345634***2",
+  },
+];
+
 export default function PaymentMethod({ navigation }) {
   const [selectedPayment, setSelectedPayment] = useState(null);
 
@@ -28,7 +46,7 @@ export default function PaymentMethod({ navigation }) {
         onPress={
           () => {
             handlePaymentPress(item.id)
-            navigation.goBack()
+            navigation.navigate('confirmOrder', { image: item.image, number: item.number })
           }
         }
       >
@@ -46,7 +64,7 @@ export default function PaymentMethod({ navigation }) {
     <SafeAreaView>
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={()=>navigation.goBack()}
+          onPress={() => navigation.goBack()}
         >
           <Image
             source={require("../../assets/images/combackicon.png")}
@@ -69,23 +87,6 @@ export default function PaymentMethod({ navigation }) {
   );
 }
 
-const paymentData = [
-  {
-    id: 1,
-    image: require("../../assets/images/paypal.png"),
-    number: "234466345634***",
-  },
-  {
-    id: 2,
-    image: require("../../assets/images/visa.png"),
-    number: "234466345634***",
-  },
-  {
-    id: 3,
-    image: require("../../assets/images/layer3.png"),
-    number: "234466345634***",
-  },
-];
 
 const styles = StyleSheet.create({
   container: {

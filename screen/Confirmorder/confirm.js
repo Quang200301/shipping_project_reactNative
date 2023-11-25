@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,11 +9,11 @@ import {
   Button,
 } from "react-native";
 
-const TotalPayment = (props) => (
+const TotalPayment = ({ data, navigation }) => (
   <View style={totalPaymentStyles.totalPayment}>
     <View style={totalPaymentStyles.detailInvoid}>
       <Text style={totalPaymentStyles.TextInvoice}> Sub - Total</Text>
-      <Text style={totalPaymentStyles.TextInvoice}>{props.data.subTotal} $</Text>
+      <Text style={totalPaymentStyles.TextInvoice}>{data.subTotal} $</Text>
     </View>
 
     <View style={totalPaymentStyles.detailInvoid}>
@@ -27,13 +27,16 @@ const TotalPayment = (props) => (
     </View>
     <View style={[totalPaymentStyles.detailInvoid, { fontSize: 17, marginTop: 15 }]}>
       <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> Total</Text>
-      <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> {props.data.totalPrice} $</Text>
+      <Text style={[totalPaymentStyles.TextInvoice, { fontSize: 18 }]}> {data.totalPrice} $</Text>
     </View>
 
     <TouchableOpacity
       style={totalPaymentStyles.order}
       onPress={
-        () => navigation.goBack()
+        () => {
+          navigation.navigate('YourOrder')
+          // ---------------------------------------------- NAVIGATTE TO CHECKOUT PAGE ------------------------------------------
+        }
       }
     >
       <Text style={totalPaymentStyles.placeOrder}>Place My Order</Text>
@@ -42,6 +45,9 @@ const TotalPayment = (props) => (
 )
 
 export default function ConfirmOrder({ route, navigation }) {
+  const [address, setAddress] = useState('4517 Washington Ave. Manchester, Kentucky 39490');
+
+  const { image, number } = route.params;
   return (
     <SafeAreaView style={{ height: '100%' }}>
       <View style={styles.bodyContainer}>
@@ -62,8 +68,8 @@ export default function ConfirmOrder({ route, navigation }) {
 
             <View style={[styles.row, styles.actionEdit]}>
               <Text style={styles.deliverText}>Deliver To</Text>
-              <TouchableOpacity 
-                onPress={()=> navigation.navigate('Shipping')}
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Shipping', { adr: address })}
               >
                 <Text style={styles.editText}>Edit</Text>
               </TouchableOpacity>
@@ -78,7 +84,7 @@ export default function ConfirmOrder({ route, navigation }) {
               </View>
 
               <Text style={styles.textAddress}>
-                4517 Washington Ave. Manchester, Kentucky 39490
+                {address != null && "4517 Washington Ave. Manchester, Kentucky 39490"}
               </Text>
             </View>
 
@@ -90,7 +96,7 @@ export default function ConfirmOrder({ route, navigation }) {
             <View style={[styles.row, styles.actionEdit]}>
               <Text style={styles.deliverText}>Payment Method</Text>
               <TouchableOpacity
-                onPress={()=>navigation.navigate('PaymentMethod')}
+                onPress={() => navigation.navigate('PaymentMethod')}
               >
                 <Text style={styles.editText}>Edit</Text>
               </TouchableOpacity>
@@ -99,13 +105,13 @@ export default function ConfirmOrder({ route, navigation }) {
             <View style={[styles.location, styles.row]}>
               <View style={styles.iconLocation}>
                 <Image
-                  source={require("../../assets/images/paypal.png")}
+                  source={image != null ? image : require("../../assets/images/paypal.png")}
                   resizeMode="contain"
                 />
               </View>
 
               <Text style={[styles.textAddress, { textAlign: 'right' }]}>
-                2121 6352 8465 ****
+                {number != null ? number : '2121 6352 8465 ****'}
               </Text>
             </View>
 
@@ -115,7 +121,7 @@ export default function ConfirmOrder({ route, navigation }) {
 
 
       </View>
-      <TotalPayment data={route.params.dataPayment} />
+      <TotalPayment data={[route.params.dataPayment, navigation]} navigation={navigation} />
     </SafeAreaView>
   );
 }

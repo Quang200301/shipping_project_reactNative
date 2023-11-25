@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Entypo } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementQuantity } from '../../components/features/counterSlice';
@@ -10,6 +10,7 @@ import { SwipeListView } from "react-native-swipe-list-view";
 import { useNavigation } from '@react-navigation/native';
 
 export default function CartOrder({ navigation }) {
+
     const dispatch = useDispatch();
     const CartItems = useSelector((state) => state.cart.cart);
     const totalQuantity = useSelector(selectTotalAllQuantity);

@@ -9,9 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 export default function Shipping({ route, navigation }) {
-  const [addressParent, setAddress] = useState('101B Le Huu Trac, Son Tra, Da Nang');
-  const  {addressChild}  = route.params ||  {addressChild:addressParent} ;
-
+  const { addressChild } = route.params || { addressChild: '101B Le Huu Trac, Son Tra, Da Nang' };
+  const {adr} = route.params;
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -74,7 +73,8 @@ export default function Shipping({ route, navigation }) {
                   onPress={() => navigation.navigate('Map')}
                   style={{ width: "80%" }}>
                   <Text style={{ fontSize: 15, color: "#22242E" }}>
-                    {addressChild}
+                    {addressChild != null ? addressChild
+                      : adr != null ? adr : "Kon Tum"}
                   </Text>
                   <Text style={{ fontSize: 15, color: "#6B50F6" }}>Set location</Text>
                 </TouchableOpacity>
@@ -88,7 +88,7 @@ export default function Shipping({ route, navigation }) {
             { height: "32%", width: "100%" },
           ]}
         >
-    
+
         </View>
       </View>
     </SafeAreaView>

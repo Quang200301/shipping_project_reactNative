@@ -24,6 +24,7 @@ import ConfirmOrder from '../screen/Confirmorder/confirm'
 import Shipping from '../screen/Shipping/ShippingLocation';
 import PaymentMethod from '../screen/Payments/Payment';
 import CartOrder from '../screen/order/CartOrder';
+import YourOrder from '../screen/order/YourOrder';
 
 // End stacks ------------------------------------------------
 
@@ -93,19 +94,23 @@ const stackRoute = [
     },
     {
         stackName: 'PaymentMethod',
-        component:PaymentMethod,
+        component: PaymentMethod,
     },
     {
         stackName: 'Buy',
-        component:CartOrder,
+        component: CartOrder,
     },
+    {
+        stackName: 'YourOrder',
+        component: YourOrder,
+    }
 ];
 
 export default function StackRoute() {
     return (
         <Stack.Navigator
             initialRouteName='home'
-        >   
+        >
             {
                 stackRoute.map(
                     (route, index) => <Stack.Screen key={index} name={route.stackName} component={route.component} options={{ headerShown: false }} />
